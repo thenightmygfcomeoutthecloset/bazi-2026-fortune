@@ -93,13 +93,18 @@
                             <label class="form-label">出生省份</label>
                             <select class="form-select" id="birthProvince" required></select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="cityGroup">
                             <label class="form-label">出生城市</label>
                             <select class="form-select" id="birthCity" required></select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="districtGroup">
                             <label class="form-label">出生区县 (经度)</label>
                             <select class="form-select" id="birthDistrict" required></select>
+                        </div>
+                        <!-- 自定义经度输入 (默认隐藏) -->
+                        <div class="form-group" id="customLongitudeGroup" style="display: none;">
+                            <label class="form-label">自定义经度 (海外/自定义填此项)</label>
+                            <input type="number" step="0.01" class="form-select" id="customLongitude" placeholder="例如: 139.69 (东京) 或 -0.12 (伦敦)">
                         </div>
                     </div>
 

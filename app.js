@@ -162,6 +162,24 @@ function initBaziForm() {
         // 更新城市
         function updateCities() {
             const prov = provinceSelect.value;
+            
+            const cityGroup = document.getElementById('cityGroup');
+            const districtGroup = document.getElementById('districtGroup');
+            const customLngGroup = document.getElementById('customLongitudeGroup');
+            const customLngInput = document.getElementById('customLongitude');
+            
+            if (prov === '海外 / 自定义') {
+                if (cityGroup) cityGroup.style.display = 'none';
+                if (districtGroup) districtGroup.style.display = 'none';
+                if (customLngGroup) customLngGroup.style.display = 'block';
+                if (customLngInput) customLngInput.required = true;
+            } else {
+                if (cityGroup) cityGroup.style.display = 'block';
+                if (districtGroup) districtGroup.style.display = 'block';
+                if (customLngGroup) customLngGroup.style.display = 'none';
+                if (customLngInput) customLngInput.required = false;
+            }
+
             citySelect.innerHTML = '';
             if (REGION_DATA[prov]) {
                 Object.keys(REGION_DATA[prov]).forEach((city, index) => {
@@ -218,7 +236,15 @@ function handleBaziSubmit(e) {
     const day = parseInt(document.getElementById('birthDay').value);
     const hour = parseInt(document.getElementById('birthHour').value);
     const minute = parseInt(document.getElementById('birthMinute').value);
-    const longitude = parseFloat(document.getElementById('birthDistrict').value);
+    const province = document.getElementById('birthProvince').value;
+    
+    let longitude;
+    if (province === '海外 / 自定义') {
+        longitude = parseFloat(document.getElementById('customLongitude').value);
+    } else {
+        longitude = parseFloat(document.getElementById('birthDistrict').value);
+    }
+    
     const genderEl = document.querySelector('input[name="gender"]:checked');
     const gender = genderEl ? genderEl.value : 'male';
 
