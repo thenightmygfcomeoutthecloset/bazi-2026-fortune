@@ -265,6 +265,9 @@ function renderBaziResults(bazi, fortune) {
             <div class="pillar-element">${p.stemElement} / ${p.branchElement}</div>
             <div class="pillar-nayin">${p.naYin}</div>
             <div class="pillar-ten-god">${k === 'day' ? '日主' : (bazi.tenGods[k] || '')}</div>
+            <div class="pillar-shensha" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center;">
+                ${(p.shenSha || []).map(s => `<span style="font-size:0.65rem; padding: 2px 6px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 4px; color: #a78bfa;">${s}</span>`).join('')}
+            </div>
         `;
         pillarsContainer.appendChild(card);
     });
@@ -423,6 +426,7 @@ function resetTarotStage() {
 }
 
 function handleTarotShuffle() {
+    playTarotSound('shuffle');
     tarotDeck = shuffleDeck();
     document.getElementById('stageStatus').textContent = '正在洗牌与凝聚能量…';
 
@@ -452,8 +456,10 @@ function handleTarotShuffle() {
 function onTarotPick(idx, el) {
     if (tarotStep !== 'picking' || tarotSelectedIndexes.includes(idx)) return;
 
+    playTarotSound('flip');
     tarotSelectedIndexes.push(idx);
     el.style.transform += ' translateY(-25px) scale(1.05)';
+    el.style.boxShadow = '0 0 20px rgba(212,175,55,0.6)';
     document.getElementById('stageStatus').textContent = `已选择 ${tarotSelectedIndexes.length}/${tarotSpread.cardsCount} 张卡牌`;
 
     if (tarotSelectedIndexes.length === tarotSpread.cardsCount) {
@@ -486,10 +492,17 @@ function displayTarotResults() {
         </div>
     `).join('');
 
-    reading.drawnCards.forEach((_, i) => {
+    reading.drawnCards.forEach((c, i) => {
         setTimeout(() => {
             const cardEl = document.getElementById(`tarotResCard-${i}`);
-            if (cardEl) cardEl.classList.add('flipped');
+            if (cardEl) {
+                cardEl.classList.add('flipped');
+                if (!c.isMinor) {
+                    playTarotSound('reveal');
+                } else {
+                    playTarotSound('flip');
+                }
+            }
         }, (i + 1) * 350);
     });
 
@@ -551,7 +564,76 @@ function initCanvas() {
     animate();
 }
 
+// ============================================================
+//  Web Audio 音效合成
+// ============================================================
+let audioCtx;
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+function playTarotSound(type) {
+    if (!audioCtx) initAudio();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    
+    const t = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'shuffle') {
+        // 白噪声沙沙声模拟洗牌
+        const bufferSize = audioCtx.sampleRate * 0.5;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+        
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+        const noiseFilter = audioCtx.createBiquadFilter();
+        noiseFilter.type = 'lowpass';
+        noiseFilter.frequency.value = 1000;
+        noise.connect(noiseFilter);
+        noiseFilter.connect(gain);
+        
+        gain.gain.setValueAtTime(0.5, t);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.5);
+        noise.start(t);
+        noise.stop(t + 0.5);
+        return;
+    } else if (type === 'flip') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(300, t);
+        osc.frequency.exponentialRampToValueAtTime(100, t + 0.1);
+        gain.gain.setValueAtTime(0.3, t);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+        osc.start(t);
+        osc.stop(t + 0.1);
+    } else if (type === 'reveal') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(220, t);
+        osc.frequency.exponentialRampToValueAtTime(440, t + 0.5);
+        const osc2 = audioCtx.createOscillator();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(222, t);
+        osc2.frequency.exponentialRampToValueAtTime(444, t + 0.5);
+        osc2.connect(gain);
+        osc2.start(t);
+        osc2.stop(t + 1);
+
+        gain.gain.setValueAtTime(0, t);
+        gain.gain.linearRampToValueAtTime(0.3, t + 0.2);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 1);
+        osc.start(t);
+        osc.stop(t + 1);
+    }
+}
+
 // 初始化执行
+document.addEventListener('click', () => initAudio(), { once: true });
 initCanvas();
 initNavigation();
 initBaziForm();

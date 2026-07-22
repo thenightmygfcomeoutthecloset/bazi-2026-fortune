@@ -399,8 +399,13 @@ body {
     width: 130px; height: 210px;
     position: absolute;
     transform-style: preserve-3d;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    border-radius: 12px;
+}
+
+.tarot-card-3d:hover {
+    box-shadow: 0 0 25px rgba(212, 168, 83, 0.5);
 }
 
 .tarot-card-3d.flipped { transform: rotateY(180deg); }
@@ -473,8 +478,11 @@ body {
 .app-footer { text-align: center; padding: 40px 0 20px; color: var(--text-muted); font-size: 0.8rem; }
 
 @media (max-width: 600px) {
-    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .portal-grid { grid-template-columns: 1fr; }
+    .result-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .daymaster-card, .wuxing-card, .lucky-card, .trend-card { padding: 16px; }
+    .hero-title { font-size: 2.2rem; }
 }
 
  . c e l t i c - c r o s s - l a y o u t   { 

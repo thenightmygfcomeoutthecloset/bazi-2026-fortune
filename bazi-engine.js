@@ -378,6 +378,42 @@ function calculateDaYun(year, month, day, yearStem, monthStem, monthBranch, gend
     };
 }
 
+function calculateShenSha(dayStem, dayBranch, yearBranch) {
+    const shenSha = {
+        '丑': [], '未': [], '子': [], '申': [], '亥': [], '酉': [], '寅': [], '午': [], '卯': [], '巳': [], '辰': [], '戌': []
+    };
+
+    // 天乙贵人
+    if (dayStem === 0 || dayStem === 4) { shenSha['丑'].push('天乙贵人'); shenSha['未'].push('天乙贵人'); }
+    else if (dayStem === 1 || dayStem === 5) { shenSha['子'].push('天乙贵人'); shenSha['申'].push('天乙贵人'); }
+    else if (dayStem === 2 || dayStem === 3) { shenSha['亥'].push('天乙贵人'); shenSha['酉'].push('天乙贵人'); }
+    else if (dayStem === 6 || dayStem === 7) { shenSha['寅'].push('天乙贵人'); shenSha['午'].push('天乙贵人'); }
+    else if (dayStem === 8 || dayStem === 9) { shenSha['卯'].push('天乙贵人'); shenSha['巳'].push('天乙贵人'); }
+
+    // 桃花
+    const taoHuaBranches = [[8,0,4], [11,3,7], [2,6,10], [5,9,1]];
+    const taoHuaStars = [9, 0, 3, 6]; // 酉, 子, 卯, 午
+    for (let i = 0; i < 4; i++) {
+        if (taoHuaBranches[i].includes(dayBranch) || taoHuaBranches[i].includes(yearBranch)) {
+            shenSha[DI_ZHI[taoHuaStars[i]]].push('桃花');
+        }
+    }
+
+    // 驿马
+    const yiMaStars = [2, 5, 8, 11]; // 寅, 巳, 申, 亥
+    for (let i = 0; i < 4; i++) {
+        if (taoHuaBranches[i].includes(dayBranch) || taoHuaBranches[i].includes(yearBranch)) {
+            shenSha[DI_ZHI[yiMaStars[i]]].push('驿马');
+        }
+    }
+
+    // 文昌
+    const wenChangMap = { 0:'巳', 1:'午', 2:'申', 3:'酉', 4:'申', 5:'酉', 6:'亥', 7:'子', 8:'寅', 9:'卯' };
+    shenSha[wenChangMap[dayStem]].push('文昌贵人');
+
+    return shenSha;
+}
+
 /**
  * 主入口：排盘（支持真太阳时经度校正）
  */
@@ -444,6 +480,11 @@ export function calculateBaZi(year, month, day, hour, minute, longitude = 120.0,
         yearPillar.stem, monthPillar.stem, monthPillar.branch, gender
     );
 
+    const shenShaMap = calculateShenSha(dayPillar.stem, dayPillar.branch, yearPillar.branch);
+    keys.forEach(k => {
+        fourPillars[k].shenSha = shenShaMap[fourPillars[k].branchChar] || [];
+    });
+
     return {
         input: { year, month, day, hour, minute, longitude, gender },
         trueSolar,
@@ -455,5 +496,6 @@ export function calculateBaZi(year, month, day, hour, minute, longitude = 120.0,
         zodiac,
         monthlyTenGods,
         daYun,
+        shenShaMap,
     };
 }
