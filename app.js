@@ -439,6 +439,7 @@ function initTarot() {
         });
     });
 
+    tarotSpread = TAROT_SPREADS[0]; // 默认选中第一个牌阵
     resetTarotStage();
     const actionBtn = document.getElementById('tarotActionBtn');
     const resetBtn = document.getElementById('tarotResetBtn');
