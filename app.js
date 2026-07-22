@@ -131,20 +131,17 @@ function initBaziForm() {
     updateDays();
 
     // 小时
+    const unknownOpt = document.createElement('option');
+    unknownOpt.value = -1;
+    unknownOpt.textContent = `🤷 我不记得了 (默认吉时)`;
+    hourSelect.appendChild(unknownOpt);
+
     for (let h = 0; h < 24; h++) {
         const opt = document.createElement('option');
         opt.value = h;
         opt.textContent = `${String(h).padStart(2, '0')} 点 (${h}时)`;
         if (h === 12) opt.selected = true;
         hourSelect.appendChild(opt);
-    }
-
-    // 分钟
-    for (let min = 0; min < 60; min += 5) {
-        const opt = document.createElement('option');
-        opt.value = min;
-        opt.textContent = `${String(min).padStart(2, '0')} 分`;
-        minuteSelect.appendChild(opt);
     }
 
     // 地区三级联动
@@ -237,8 +234,16 @@ function handleBaziSubmit(e) {
     const year = parseInt(document.getElementById('birthYear').value);
     const month = parseInt(document.getElementById('birthMonth').value);
     const day = parseInt(document.getElementById('birthDay').value);
-    const hour = parseInt(document.getElementById('birthHour').value);
-    const minute = parseInt(document.getElementById('birthMinute').value);
+    
+    let hour = parseInt(document.getElementById('birthHour').value);
+    let minute = parseInt(document.getElementById('birthMinute').value);
+    
+    // 处理我不记得了 / 默认填 0 的情况
+    if (isNaN(minute)) minute = 0;
+    if (hour === -1) {
+        hour = 12; // 默认吉时 午时
+        minute = 0;
+    }
     const province = document.getElementById('birthProvince').value;
     
     let longitude;
