@@ -1,0 +1,1947 @@
+[
+  {
+    "code": "110000",
+    "name": "北京市",
+    "level": "province",
+    "children": [
+      {
+        "code": "110101",
+        "name": "东城区",
+        "level": "county",
+        "center": {
+          "longitude": 116.416334,
+          "latitude": 39.928359
+        }
+      },
+      {
+        "code": "110102",
+        "name": "西城区",
+        "level": "county",
+        "center": {
+          "longitude": 116.36585,
+          "latitude": 39.9126
+        }
+      },
+      {
+        "code": "110105",
+        "name": "朝阳区",
+        "level": "county",
+        "center": {
+          "longitude": 116.443136,
+          "latitude": 39.921444
+        }
+      },
+      {
+        "code": "110106",
+        "name": "丰台区",
+        "level": "county",
+        "center": {
+          "longitude": 116.286726,
+          "latitude": 39.858538
+        }
+      },
+      {
+        "code": "110107",
+        "name": "石景山区",
+        "level": "county",
+        "center": {
+          "longitude": 116.223015,
+          "latitude": 39.906304
+        }
+      },
+      {
+        "code": "110108",
+        "name": "海淀区",
+        "level": "county",
+        "center": {
+          "longitude": 116.2977,
+          "latitude": 39.959893
+        }
+      },
+      {
+        "code": "110109",
+        "name": "门头沟区",
+        "level": "county",
+        "center": {
+          "longitude": 116.101668,
+          "latitude": 39.940842
+        }
+      },
+      {
+        "code": "110111",
+        "name": "房山区",
+        "level": "county",
+        "center": {
+          "longitude": 116.143426,
+          "latitude": 39.748889
+        }
+      },
+      {
+        "code": "110112",
+        "name": "通州区",
+        "level": "county",
+        "center": {
+          "longitude": 116.72923,
+          "latitude": 39.916403
+        }
+      },
+      {
+        "code": "110113",
+        "name": "顺义区",
+        "level": "county",
+        "center": {
+          "longitude": 116.661474,
+          "latitude": 40.149891
+        }
+      },
+      {
+        "code": "110114",
+        "name": "昌平区",
+        "level": "county",
+        "center": {
+          "longitude": 116.231034,
+          "latitude": 40.220952
+        }
+      },
+      {
+        "code": "110115",
+        "name": "大兴区",
+        "level": "county",
+        "center": {
+          "longitude": 116.341483,
+          "latitude": 39.726917
+        }
+      },
+      {
+        "code": "110116",
+        "name": "怀柔区",
+        "level": "county",
+        "center": {
+          "longitude": 116.631974,
+          "latitude": 40.317003
+        }
+      },
+      {
+        "code": "110117",
+        "name": "平谷区",
+        "level": "county",
+        "center": {
+          "longitude": 117.121589,
+          "latitude": 40.140805
+        }
+      },
+      {
+        "code": "110118",
+        "name": "密云区",
+        "level": "county",
+        "center": {
+          "longitude": 116.843351,
+          "latitude": 40.377058
+        }
+      },
+      {
+        "code": "110119",
+        "name": "延庆区",
+        "level": "county",
+        "center": {
+          "longitude": 115.974609,
+          "latitude": 40.457033
+        }
+      }
+    ],
+    "center": {
+      "longitude": 116.407387,
+      "latitude": 39.904179
+    }
+  },
+  {
+    "code": "120000",
+    "name": "天津市",
+    "level": "province",
+    "children": [
+      {
+        "code": "120101",
+        "name": "和平区",
+        "level": "county",
+        "center": {
+          "longitude": 117.214713,
+          "latitude": 39.116884
+        }
+      },
+      {
+        "code": "120102",
+        "name": "河东区",
+        "level": "county",
+        "center": {
+          "longitude": 117.251584,
+          "latitude": 39.128294
+        }
+      },
+      {
+        "code": "120103",
+        "name": "河西区",
+        "level": "county",
+        "center": {
+          "longitude": 117.223379,
+          "latitude": 39.109679
+        }
+      },
+      {
+        "code": "120104",
+        "name": "南开区",
+        "level": "county",
+        "center": {
+          "longitude": 117.150638,
+          "latitude": 39.138551
+        }
+      },
+      {
+        "code": "120105",
+        "name": "河北区",
+        "level": "county",
+        "center": {
+          "longitude": 117.196874,
+          "latitude": 39.148018
+        }
+      },
+      {
+        "code": "120106",
+        "name": "红桥区",
+        "level": "county",
+        "center": {
+          "longitude": 117.151566,
+          "latitude": 39.167349
+        }
+      },
+      {
+        "code": "120110",
+        "name": "东丽区",
+        "level": "county",
+        "center": {
+          "longitude": 117.313567,
+          "latitude": 39.086789
+        }
+      },
+      {
+        "code": "120111",
+        "name": "西青区",
+        "level": "county",
+        "center": {
+          "longitude": 117.008994,
+          "latitude": 39.141811
+        }
+      },
+      {
+        "code": "120112",
+        "name": "津南区",
+        "level": "county",
+        "center": {
+          "longitude": 117.356683,
+          "latitude": 38.936971
+        }
+      },
+      {
+        "code": "120113",
+        "name": "北辰区",
+        "level": "county",
+        "center": {
+          "longitude": 117.135614,
+          "latitude": 39.224638
+        }
+      },
+      {
+        "code": "120114",
+        "name": "武清区",
+        "level": "county",
+        "center": {
+          "longitude": 117.04456,
+          "latitude": 39.384108
+        }
+      },
+      {
+        "code": "120115",
+        "name": "宝坻区",
+        "level": "county",
+        "center": {
+          "longitude": 117.309748,
+          "latitude": 39.717054
+        }
+      },
+      {
+        "code": "120116",
+        "name": "滨海新区",
+        "level": "county",
+        "center": {
+          "longitude": 117.69641,
+          "latitude": 39.017809
+        }
+      },
+      {
+        "code": "120117",
+        "name": "宁河区",
+        "level": "county",
+        "center": {
+          "longitude": 117.826674,
+          "latitude": 39.329749
+        }
+      },
+      {
+        "code": "120118",
+        "name": "静海区",
+        "level": "county",
+        "center": {
+          "longitude": 116.975474,
+          "latitude": 38.947772
+        }
+      },
+      {
+        "code": "120119",
+        "name": "蓟州区",
+        "level": "county",
+        "center": {
+          "longitude": 117.408432,
+          "latitude": 40.046544
+        }
+      }
+    ],
+    "center": {
+      "longitude": 117.201509,
+      "latitude": 39.085318
+    }
+  },
+  {
+    "code": "130000",
+    "name": "河北省",
+    "level": "province",
+    "children": [
+      {
+        "code": "130100",
+        "name": "石家庄市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130102",
+            "name": "长安区",
+            "level": "county",
+            "center": {
+              "longitude": 114.538955,
+              "latitude": 38.03682
+            }
+          },
+          {
+            "code": "130104",
+            "name": "桥西区",
+            "level": "county",
+            "center": {
+              "longitude": 114.45004,
+              "latitude": 38.025245
+            }
+          },
+          {
+            "code": "130105",
+            "name": "新华区",
+            "level": "county",
+            "center": {
+              "longitude": 114.463904,
+              "latitude": 38.050749
+            }
+          },
+          {
+            "code": "130107",
+            "name": "井陉矿区",
+            "level": "county",
+            "center": {
+              "longitude": 114.062258,
+              "latitude": 38.065446
+            }
+          },
+          {
+            "code": "130108",
+            "name": "裕华区",
+            "level": "county",
+            "center": {
+              "longitude": 114.531599,
+              "latitude": 38.007002
+            }
+          },
+          {
+            "code": "130109",
+            "name": "藁城区",
+            "level": "county",
+            "center": {
+              "longitude": 114.846562,
+              "latitude": 38.022177
+            }
+          },
+          {
+            "code": "130110",
+            "name": "鹿泉区",
+            "level": "county",
+            "center": {
+              "longitude": 114.313559,
+              "latitude": 38.086536
+            }
+          },
+          {
+            "code": "130111",
+            "name": "栾城区",
+            "level": "county",
+            "center": {
+              "longitude": 114.647922,
+              "latitude": 37.900915
+            }
+          },
+          {
+            "code": "130121",
+            "name": "井陉县",
+            "level": "county",
+            "center": {
+              "longitude": 114.145669,
+              "latitude": 38.032366
+            }
+          },
+          {
+            "code": "130123",
+            "name": "正定县",
+            "level": "county",
+            "center": {
+              "longitude": 114.57043,
+              "latitude": 38.14699
+            }
+          },
+          {
+            "code": "130125",
+            "name": "行唐县",
+            "level": "county",
+            "center": {
+              "longitude": 114.553044,
+              "latitude": 38.437535
+            }
+          },
+          {
+            "code": "130126",
+            "name": "灵寿县",
+            "level": "county",
+            "center": {
+              "longitude": 114.383013,
+              "latitude": 38.307908
+            }
+          },
+          {
+            "code": "130127",
+            "name": "高邑县",
+            "level": "county",
+            "center": {
+              "longitude": 114.611659,
+              "latitude": 37.615905
+            }
+          },
+          {
+            "code": "130128",
+            "name": "深泽县",
+            "level": "county",
+            "center": {
+              "longitude": 115.20089,
+              "latitude": 38.184572
+            }
+          },
+          {
+            "code": "130129",
+            "name": "赞皇县",
+            "level": "county",
+            "center": {
+              "longitude": 114.386114,
+              "latitude": 37.666549
+            }
+          },
+          {
+            "code": "130130",
+            "name": "无极县",
+            "level": "county",
+            "center": {
+              "longitude": 114.976256,
+              "latitude": 38.178852
+            }
+          },
+          {
+            "code": "130131",
+            "name": "平山县",
+            "level": "county",
+            "center": {
+              "longitude": 114.186007,
+              "latitude": 38.260288
+            }
+          },
+          {
+            "code": "130132",
+            "name": "元氏县",
+            "level": "county",
+            "center": {
+              "longitude": 114.525508,
+              "latitude": 37.767332
+            }
+          },
+          {
+            "code": "130133",
+            "name": "赵县",
+            "level": "county",
+            "center": {
+              "longitude": 114.775914,
+              "latitude": 37.756935
+            }
+          },
+          {
+            "code": "130181",
+            "name": "辛集市",
+            "level": "county",
+            "center": {
+              "longitude": 115.217626,
+              "latitude": 37.943239
+            }
+          },
+          {
+            "code": "130183",
+            "name": "晋州市",
+            "level": "county",
+            "center": {
+              "longitude": 115.044141,
+              "latitude": 38.033937
+            }
+          },
+          {
+            "code": "130184",
+            "name": "新乐市",
+            "level": "county",
+            "center": {
+              "longitude": 114.683745,
+              "latitude": 38.343952
+            }
+          }
+        ],
+        "center": {
+          "longitude": 114.514976,
+          "latitude": 38.042007
+        }
+      },
+      {
+        "code": "130200",
+        "name": "唐山市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130202",
+            "name": "路南区",
+            "level": "county",
+            "center": {
+              "longitude": 118.154348,
+              "latitude": 39.624988
+            }
+          },
+          {
+            "code": "130203",
+            "name": "路北区",
+            "level": "county",
+            "center": {
+              "longitude": 118.201085,
+              "latitude": 39.625079
+            }
+          },
+          {
+            "code": "130204",
+            "name": "古冶区",
+            "level": "county",
+            "center": {
+              "longitude": 118.447134,
+              "latitude": 39.73392
+            }
+          },
+          {
+            "code": "130205",
+            "name": "开平区",
+            "level": "county",
+            "center": {
+              "longitude": 118.262246,
+              "latitude": 39.671634
+            }
+          },
+          {
+            "code": "130207",
+            "name": "丰南区",
+            "level": "county",
+            "center": {
+              "longitude": 118.085169,
+              "latitude": 39.576031
+            }
+          },
+          {
+            "code": "130208",
+            "name": "丰润区",
+            "level": "county",
+            "center": {
+              "longitude": 118.162426,
+              "latitude": 39.832919
+            }
+          },
+          {
+            "code": "130209",
+            "name": "曹妃甸区",
+            "level": "county",
+            "center": {
+              "longitude": 118.460197,
+              "latitude": 39.273528
+            }
+          },
+          {
+            "code": "130224",
+            "name": "滦南县",
+            "level": "county",
+            "center": {
+              "longitude": 118.68363,
+              "latitude": 39.520272
+            }
+          },
+          {
+            "code": "130225",
+            "name": "乐亭县",
+            "level": "county",
+            "center": {
+              "longitude": 118.91245,
+              "latitude": 39.425748
+            }
+          },
+          {
+            "code": "130227",
+            "name": "迁西县",
+            "level": "county",
+            "center": {
+              "longitude": 118.31467,
+              "latitude": 40.141486
+            }
+          },
+          {
+            "code": "130229",
+            "name": "玉田县",
+            "level": "county",
+            "center": {
+              "longitude": 117.738196,
+              "latitude": 39.901827
+            }
+          },
+          {
+            "code": "130281",
+            "name": "遵化市",
+            "level": "county",
+            "center": {
+              "longitude": 117.965878,
+              "latitude": 40.189119
+            }
+          },
+          {
+            "code": "130283",
+            "name": "迁安市",
+            "level": "county",
+            "center": {
+              "longitude": 118.701021,
+              "latitude": 39.998861
+            }
+          },
+          {
+            "code": "130284",
+            "name": "滦州市",
+            "level": "county",
+            "center": {
+              "longitude": 118.70301,
+              "latitude": 39.740963
+            }
+          }
+        ],
+        "center": {
+          "longitude": 118.180149,
+          "latitude": 39.63068
+        }
+      },
+      {
+        "code": "130300",
+        "name": "秦皇岛市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130302",
+            "name": "海港区",
+            "level": "county",
+            "center": {
+              "longitude": 119.564962,
+              "latitude": 39.94756
+            }
+          },
+          {
+            "code": "130303",
+            "name": "山海关区",
+            "level": "county",
+            "center": {
+              "longitude": 119.775187,
+              "latitude": 39.978882
+            }
+          },
+          {
+            "code": "130304",
+            "name": "北戴河区",
+            "level": "county",
+            "center": {
+              "longitude": 119.48449,
+              "latitude": 39.834912
+            }
+          },
+          {
+            "code": "130306",
+            "name": "抚宁区",
+            "level": "county",
+            "center": {
+              "longitude": 119.244847,
+              "latitude": 39.876253
+            }
+          },
+          {
+            "code": "130321",
+            "name": "青龙满族自治县",
+            "level": "county",
+            "center": {
+              "longitude": 118.94985,
+              "latitude": 40.407473
+            }
+          },
+          {
+            "code": "130322",
+            "name": "昌黎县",
+            "level": "county",
+            "center": {
+              "longitude": 119.199846,
+              "latitude": 39.699677
+            }
+          },
+          {
+            "code": "130324",
+            "name": "卢龙县",
+            "level": "county",
+            "center": {
+              "longitude": 118.891931,
+              "latitude": 39.892564
+            }
+          }
+        ],
+        "center": {
+          "longitude": 119.52022,
+          "latitude": 39.888243
+        }
+      },
+      {
+        "code": "130400",
+        "name": "邯郸市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130402",
+            "name": "邯山区",
+            "level": "county",
+            "center": {
+              "longitude": 114.531062,
+              "latitude": 36.59457
+            }
+          },
+          {
+            "code": "130403",
+            "name": "丛台区",
+            "level": "county",
+            "center": {
+              "longitude": 114.492875,
+              "latitude": 36.636434
+            }
+          },
+          {
+            "code": "130404",
+            "name": "复兴区",
+            "level": "county",
+            "center": {
+              "longitude": 114.462581,
+              "latitude": 36.638879
+            }
+          },
+          {
+            "code": "130406",
+            "name": "峰峰矿区",
+            "level": "county",
+            "center": {
+              "longitude": 114.212571,
+              "latitude": 36.419298
+            }
+          },
+          {
+            "code": "130407",
+            "name": "肥乡区",
+            "level": "county",
+            "center": {
+              "longitude": 114.800199,
+              "latitude": 36.548545
+            }
+          },
+          {
+            "code": "130408",
+            "name": "永年区",
+            "level": "county",
+            "center": {
+              "longitude": 114.536626,
+              "latitude": 36.74188
+            }
+          },
+          {
+            "code": "130423",
+            "name": "临漳县",
+            "level": "county",
+            "center": {
+              "longitude": 114.585514,
+              "latitude": 36.322504
+            }
+          },
+          {
+            "code": "130424",
+            "name": "成安县",
+            "level": "county",
+            "center": {
+              "longitude": 114.670094,
+              "latitude": 36.445331
+            }
+          },
+          {
+            "code": "130425",
+            "name": "大名县",
+            "level": "county",
+            "center": {
+              "longitude": 115.147985,
+              "latitude": 36.286406
+            }
+          },
+          {
+            "code": "130426",
+            "name": "涉县",
+            "level": "county",
+            "center": {
+              "longitude": 113.692157,
+              "latitude": 36.586073
+            }
+          },
+          {
+            "code": "130427",
+            "name": "磁县",
+            "level": "county",
+            "center": {
+              "longitude": 114.373965,
+              "latitude": 36.37507
+            }
+          },
+          {
+            "code": "130430",
+            "name": "邱县",
+            "level": "county",
+            "center": {
+              "longitude": 115.200049,
+              "latitude": 36.811783
+            }
+          },
+          {
+            "code": "130431",
+            "name": "鸡泽县",
+            "level": "county",
+            "center": {
+              "longitude": 114.889951,
+              "latitude": 36.911525
+            }
+          },
+          {
+            "code": "130432",
+            "name": "广平县",
+            "level": "county",
+            "center": {
+              "longitude": 114.921185,
+              "latitude": 36.476727
+            }
+          },
+          {
+            "code": "130433",
+            "name": "馆陶县",
+            "level": "county",
+            "center": {
+              "longitude": 115.281818,
+              "latitude": 36.548295
+            }
+          },
+          {
+            "code": "130434",
+            "name": "魏县",
+            "level": "county",
+            "center": {
+              "longitude": 114.939217,
+              "latitude": 36.35926
+            }
+          },
+          {
+            "code": "130435",
+            "name": "曲周县",
+            "level": "county",
+            "center": {
+              "longitude": 114.957549,
+              "latitude": 36.766347
+            }
+          },
+          {
+            "code": "130481",
+            "name": "武安市",
+            "level": "county",
+            "center": {
+              "longitude": 114.203685,
+              "latitude": 36.69759
+            }
+          }
+        ],
+        "center": {
+          "longitude": 114.53915,
+          "latitude": 36.625849
+        }
+      },
+      {
+        "code": "130500",
+        "name": "邢台市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130502",
+            "name": "襄都区",
+            "level": "county",
+            "center": {
+              "longitude": 114.507443,
+              "latitude": 37.071314
+            }
+          },
+          {
+            "code": "130503",
+            "name": "信都区",
+            "level": "county",
+            "center": {
+              "longitude": 114.468229,
+              "latitude": 37.093798
+            }
+          },
+          {
+            "code": "130505",
+            "name": "任泽区",
+            "level": "county",
+            "center": {
+              "longitude": 114.671339,
+              "latitude": 37.121958
+            }
+          },
+          {
+            "code": "130506",
+            "name": "南和区",
+            "level": "county",
+            "center": {
+              "longitude": 114.683683,
+              "latitude": 37.005626
+            }
+          },
+          {
+            "code": "130522",
+            "name": "临城县",
+            "level": "county",
+            "center": {
+              "longitude": 114.498651,
+              "latitude": 37.444512
+            }
+          },
+          {
+            "code": "130523",
+            "name": "内丘县",
+            "level": "county",
+            "center": {
+              "longitude": 114.512226,
+              "latitude": 37.287612
+            }
+          },
+          {
+            "code": "130524",
+            "name": "柏乡县",
+            "level": "county",
+            "center": {
+              "longitude": 114.693447,
+              "latitude": 37.48288
+            }
+          },
+          {
+            "code": "130525",
+            "name": "隆尧县",
+            "level": "county",
+            "center": {
+              "longitude": 114.770509,
+              "latitude": 37.351232
+            }
+          },
+          {
+            "code": "130528",
+            "name": "宁晋县",
+            "level": "county",
+            "center": {
+              "longitude": 114.940006,
+              "latitude": 37.624524
+            }
+          },
+          {
+            "code": "130529",
+            "name": "巨鹿县",
+            "level": "county",
+            "center": {
+              "longitude": 115.037884,
+              "latitude": 37.221293
+            }
+          },
+          {
+            "code": "130530",
+            "name": "新河县",
+            "level": "county",
+            "center": {
+              "longitude": 115.251005,
+              "latitude": 37.520891
+            }
+          },
+          {
+            "code": "130531",
+            "name": "广宗县",
+            "level": "county",
+            "center": {
+              "longitude": 115.142766,
+              "latitude": 37.074795
+            }
+          },
+          {
+            "code": "130532",
+            "name": "平乡县",
+            "level": "county",
+            "center": {
+              "longitude": 115.03008,
+              "latitude": 37.063771
+            }
+          },
+          {
+            "code": "130533",
+            "name": "威县",
+            "level": "county",
+            "center": {
+              "longitude": 115.266829,
+              "latitude": 36.975164
+            }
+          },
+          {
+            "code": "130534",
+            "name": "清河县",
+            "level": "county",
+            "center": {
+              "longitude": 115.665081,
+              "latitude": 37.0451
+            }
+          },
+          {
+            "code": "130535",
+            "name": "临西县",
+            "level": "county",
+            "center": {
+              "longitude": 115.501258,
+              "latitude": 36.871312
+            }
+          },
+          {
+            "code": "130581",
+            "name": "南宫市",
+            "level": "county",
+            "center": {
+              "longitude": 115.40866,
+              "latitude": 37.358907
+            }
+          },
+          {
+            "code": "130582",
+            "name": "沙河市",
+            "level": "county",
+            "center": {
+              "longitude": 114.503023,
+              "latitude": 36.855548
+            }
+          }
+        ],
+        "center": {
+          "longitude": 114.49742,
+          "latitude": 37.060227
+        }
+      },
+      {
+        "code": "130600",
+        "name": "保定市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130602",
+            "name": "竞秀区",
+            "level": "county",
+            "center": {
+              "longitude": 115.458671,
+              "latitude": 38.877318
+            }
+          },
+          {
+            "code": "130606",
+            "name": "莲池区",
+            "level": "county",
+            "center": {
+              "longitude": 115.497153,
+              "latitude": 38.883528
+            }
+          },
+          {
+            "code": "130607",
+            "name": "满城区",
+            "level": "county",
+            "center": {
+              "longitude": 115.322246,
+              "latitude": 38.949732
+            }
+          },
+          {
+            "code": "130608",
+            "name": "清苑区",
+            "level": "county",
+            "center": {
+              "longitude": 115.48988,
+              "latitude": 38.76527
+            }
+          },
+          {
+            "code": "130609",
+            "name": "徐水区",
+            "level": "county",
+            "center": {
+              "longitude": 115.655772,
+              "latitude": 39.018781
+            }
+          },
+          {
+            "code": "130623",
+            "name": "涞水县",
+            "level": "county",
+            "center": {
+              "longitude": 115.713651,
+              "latitude": 39.394305
+            }
+          },
+          {
+            "code": "130624",
+            "name": "阜平县",
+            "level": "county",
+            "center": {
+              "longitude": 114.195118,
+              "latitude": 38.849221
+            }
+          },
+          {
+            "code": "130626",
+            "name": "定兴县",
+            "level": "county",
+            "center": {
+              "longitude": 115.808183,
+              "latitude": 39.263219
+            }
+          },
+          {
+            "code": "130627",
+            "name": "唐县",
+            "level": "county",
+            "center": {
+              "longitude": 114.982968,
+              "latitude": 38.748477
+            }
+          },
+          {
+            "code": "130628",
+            "name": "高阳县",
+            "level": "county",
+            "center": {
+              "longitude": 115.779149,
+              "latitude": 38.700846
+            }
+          },
+          {
+            "code": "130629",
+            "name": "容城县",
+            "level": "county",
+            "center": {
+              "longitude": 115.861635,
+              "latitude": 39.043321
+            }
+          },
+          {
+            "code": "130630",
+            "name": "涞源县",
+            "level": "county",
+            "center": {
+              "longitude": 114.694416,
+              "latitude": 39.360622
+            }
+          },
+          {
+            "code": "130631",
+            "name": "望都县",
+            "level": "county",
+            "center": {
+              "longitude": 115.15542,
+              "latitude": 38.696221
+            }
+          },
+          {
+            "code": "130632",
+            "name": "安新县",
+            "level": "county",
+            "center": {
+              "longitude": 115.935688,
+              "latitude": 38.936102
+            }
+          },
+          {
+            "code": "130633",
+            "name": "易县",
+            "level": "county",
+            "center": {
+              "longitude": 115.497487,
+              "latitude": 39.350219
+            }
+          },
+          {
+            "code": "130634",
+            "name": "曲阳县",
+            "level": "county",
+            "center": {
+              "longitude": 114.740476,
+              "latitude": 38.614409
+            }
+          },
+          {
+            "code": "130635",
+            "name": "蠡县",
+            "level": "county",
+            "center": {
+              "longitude": 115.583701,
+              "latitude": 38.488064
+            }
+          },
+          {
+            "code": "130636",
+            "name": "顺平县",
+            "level": "county",
+            "center": {
+              "longitude": 115.135133,
+              "latitude": 38.837988
+            }
+          },
+          {
+            "code": "130637",
+            "name": "博野县",
+            "level": "county",
+            "center": {
+              "longitude": 115.464295,
+              "latitude": 38.458048
+            }
+          },
+          {
+            "code": "130638",
+            "name": "雄县",
+            "level": "county",
+            "center": {
+              "longitude": 116.108624,
+              "latitude": 38.994825
+            }
+          },
+          {
+            "code": "130681",
+            "name": "涿州市",
+            "level": "county",
+            "center": {
+              "longitude": 115.97444,
+              "latitude": 39.485684
+            }
+          },
+          {
+            "code": "130682",
+            "name": "定州市",
+            "level": "county",
+            "center": {
+              "longitude": 114.990321,
+              "latitude": 38.516746
+            }
+          },
+          {
+            "code": "130683",
+            "name": "安国市",
+            "level": "county",
+            "center": {
+              "longitude": 115.327088,
+              "latitude": 38.418985
+            }
+          },
+          {
+            "code": "130684",
+            "name": "高碑店市",
+            "level": "county",
+            "center": {
+              "longitude": 115.873612,
+              "latitude": 39.327233
+            }
+          }
+        ],
+        "center": {
+          "longitude": 115.464523,
+          "latitude": 38.874476
+        }
+      },
+      {
+        "code": "130700",
+        "name": "张家口市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130702",
+            "name": "桥东区",
+            "level": "county",
+            "center": {
+              "longitude": 114.894114,
+              "latitude": 40.788472
+            }
+          },
+          {
+            "code": "130703",
+            "name": "桥西区",
+            "level": "county",
+            "center": {
+              "longitude": 114.868604,
+              "latitude": 40.819553
+            }
+          },
+          {
+            "code": "130705",
+            "name": "宣化区",
+            "level": "county",
+            "center": {
+              "longitude": 115.099515,
+              "latitude": 40.609444
+            }
+          },
+          {
+            "code": "130706",
+            "name": "下花园区",
+            "level": "county",
+            "center": {
+              "longitude": 115.287127,
+              "latitude": 40.502628
+            }
+          },
+          {
+            "code": "130708",
+            "name": "万全区",
+            "level": "county",
+            "center": {
+              "longitude": 114.740584,
+              "latitude": 40.767377
+            }
+          },
+          {
+            "code": "130709",
+            "name": "崇礼区",
+            "level": "county",
+            "center": {
+              "longitude": 115.282345,
+              "latitude": 40.974741
+            }
+          },
+          {
+            "code": "130722",
+            "name": "张北县",
+            "level": "county",
+            "center": {
+              "longitude": 114.719927,
+              "latitude": 41.159039
+            }
+          },
+          {
+            "code": "130723",
+            "name": "康保县",
+            "level": "county",
+            "center": {
+              "longitude": 114.60018,
+              "latitude": 41.853016
+            }
+          },
+          {
+            "code": "130724",
+            "name": "沽源县",
+            "level": "county",
+            "center": {
+              "longitude": 115.688544,
+              "latitude": 41.670497
+            }
+          },
+          {
+            "code": "130725",
+            "name": "尚义县",
+            "level": "county",
+            "center": {
+              "longitude": 113.968763,
+              "latitude": 41.076588
+            }
+          },
+          {
+            "code": "130726",
+            "name": "蔚县",
+            "level": "county",
+            "center": {
+              "longitude": 114.589136,
+              "latitude": 39.840154
+            }
+          },
+          {
+            "code": "130727",
+            "name": "阳原县",
+            "level": "county",
+            "center": {
+              "longitude": 114.150267,
+              "latitude": 40.104303
+            }
+          },
+          {
+            "code": "130728",
+            "name": "怀安县",
+            "level": "county",
+            "center": {
+              "longitude": 114.386488,
+              "latitude": 40.67527
+            }
+          },
+          {
+            "code": "130730",
+            "name": "怀来县",
+            "level": "county",
+            "center": {
+              "longitude": 115.517868,
+              "latitude": 40.415625
+            }
+          },
+          {
+            "code": "130731",
+            "name": "涿鹿县",
+            "level": "county",
+            "center": {
+              "longitude": 115.196835,
+              "latitude": 40.382681
+            }
+          },
+          {
+            "code": "130732",
+            "name": "赤城县",
+            "level": "county",
+            "center": {
+              "longitude": 115.831256,
+              "latitude": 40.913348
+            }
+          }
+        ],
+        "center": {
+          "longitude": 114.885895,
+          "latitude": 40.768931
+        }
+      },
+      {
+        "code": "130800",
+        "name": "承德市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130802",
+            "name": "双桥区",
+            "level": "county",
+            "center": {
+              "longitude": 117.943121,
+              "latitude": 40.974679
+            }
+          },
+          {
+            "code": "130803",
+            "name": "双滦区",
+            "level": "county",
+            "center": {
+              "longitude": 117.799588,
+              "latitude": 40.959426
+            }
+          },
+          {
+            "code": "130804",
+            "name": "鹰手营子矿区",
+            "level": "county",
+            "center": {
+              "longitude": 117.659341,
+              "latitude": 40.546424
+            }
+          },
+          {
+            "code": "130821",
+            "name": "承德县",
+            "level": "county",
+            "center": {
+              "longitude": 118.174166,
+              "latitude": 40.768082
+            }
+          },
+          {
+            "code": "130822",
+            "name": "兴隆县",
+            "level": "county",
+            "center": {
+              "longitude": 117.500558,
+              "latitude": 40.417358
+            }
+          },
+          {
+            "code": "130824",
+            "name": "滦平县",
+            "level": "county",
+            "center": {
+              "longitude": 117.332652,
+              "latitude": 40.941644
+            }
+          },
+          {
+            "code": "130825",
+            "name": "隆化县",
+            "level": "county",
+            "center": {
+              "longitude": 117.739026,
+              "latitude": 41.314402
+            }
+          },
+          {
+            "code": "130826",
+            "name": "丰宁满族自治县",
+            "level": "county",
+            "center": {
+              "longitude": 116.645798,
+              "latitude": 41.209951
+            }
+          },
+          {
+            "code": "130827",
+            "name": "宽城满族自治县",
+            "level": "county",
+            "center": {
+              "longitude": 118.485472,
+              "latitude": 40.611333
+            }
+          },
+          {
+            "code": "130828",
+            "name": "围场满族蒙古族自治县",
+            "level": "county",
+            "center": {
+              "longitude": 117.75934,
+              "latitude": 41.938372
+            }
+          },
+          {
+            "code": "130881",
+            "name": "平泉市",
+            "level": "county",
+            "center": {
+              "longitude": 118.702032,
+              "latitude": 41.018482
+            }
+          }
+        ],
+        "center": {
+          "longitude": 117.962749,
+          "latitude": 40.952942
+        }
+      },
+      {
+        "code": "130900",
+        "name": "沧州市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "130902",
+            "name": "新华区",
+            "level": "county",
+            "center": {
+              "longitude": 116.866309,
+              "latitude": 38.314094
+            }
+          },
+          {
+            "code": "130903",
+            "name": "运河区",
+            "level": "county",
+            "center": {
+              "longitude": 116.842964,
+              "latitude": 38.283456
+            }
+          },
+          {
+            "code": "130921",
+            "name": "沧县",
+            "level": "county",
+            "center": {
+              "longitude": 117.007478,
+              "latitude": 38.21985569
+            }
+          },
+          {
+            "code": "130922",
+            "name": "青县",
+            "level": "county",
+            "center": {
+              "longitude": 116.804137,
+              "latitude": 38.583657
+            }
+          },
+          {
+            "code": "130923",
+            "name": "东光县",
+            "level": "county",
+            "center": {
+              "longitude": 116.537138,
+              "latitude": 37.888844
+            }
+          },
+          {
+            "code": "130924",
+            "name": "海兴县",
+            "level": "county",
+            "center": {
+              "longitude": 117.497545,
+              "latitude": 38.143308
+            }
+          },
+          {
+            "code": "130925",
+            "name": "盐山县",
+            "level": "county",
+            "center": {
+              "longitude": 117.230681,
+              "latitude": 38.058074
+            }
+          },
+          {
+            "code": "130926",
+            "name": "肃宁县",
+            "level": "county",
+            "center": {
+              "longitude": 115.829619,
+              "latitude": 38.423044
+            }
+          },
+          {
+            "code": "130927",
+            "name": "南皮县",
+            "level": "county",
+            "center": {
+              "longitude": 116.708603,
+              "latitude": 38.038761
+            }
+          },
+          {
+            "code": "130928",
+            "name": "吴桥县",
+            "level": "county",
+            "center": {
+              "longitude": 116.391557,
+              "latitude": 37.628225
+            }
+          },
+          {
+            "code": "130929",
+            "name": "献县",
+            "level": "county",
+            "center": {
+              "longitude": 116.152058,
+              "latitude": 38.180381
+            }
+          },
+          {
+            "code": "130930",
+            "name": "孟村回族自治县",
+            "level": "county",
+            "center": {
+              "longitude": 117.104514,
+              "latitude": 38.053438
+            }
+          },
+          {
+            "code": "130981",
+            "name": "泊头市",
+            "level": "county",
+            "center": {
+              "longitude": 116.578322,
+              "latitude": 38.084262
+            }
+          },
+          {
+            "code": "130982",
+            "name": "任丘市",
+            "level": "county",
+            "center": {
+              "longitude": 116.084412,
+              "latitude": 38.685325
+            }
+          },
+          {
+            "code": "130983",
+            "name": "黄骅市",
+            "level": "county",
+            "center": {
+              "longitude": 117.330043,
+              "latitude": 38.372266
+            }
+          },
+          {
+            "code": "130984",
+            "name": "河间市",
+            "level": "county",
+            "center": {
+              "longitude": 116.099362,
+              "latitude": 38.446656
+            }
+          }
+        ],
+        "center": {
+          "longitude": 116.838715,
+          "latitude": 38.304676
+        }
+      },
+      {
+        "code": "131000",
+        "name": "廊坊市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "131002",
+            "name": "安次区",
+            "level": "county",
+            "center": {
+              "longitude": 116.6945443,
+              "latitude": 39.50256863
+            }
+          },
+          {
+            "code": "131003",
+            "name": "广阳区",
+            "level": "county",
+            "center": {
+              "longitude": 116.710667,
+              "latitude": 39.52343
+            }
+          },
+          {
+            "code": "131022",
+            "name": "固安县",
+            "level": "county",
+            "center": {
+              "longitude": 116.298696,
+              "latitude": 39.438797
+            }
+          },
+          {
+            "code": "131023",
+            "name": "永清县",
+            "level": "county",
+            "center": {
+              "longitude": 116.50608,
+              "latitude": 39.330983
+            }
+          },
+          {
+            "code": "131024",
+            "name": "香河县",
+            "level": "county",
+            "center": {
+              "longitude": 117.006072,
+              "latitude": 39.763772
+            }
+          },
+          {
+            "code": "131025",
+            "name": "大城县",
+            "level": "county",
+            "center": {
+              "longitude": 116.653917,
+              "latitude": 38.705232
+            }
+          },
+          {
+            "code": "131026",
+            "name": "文安县",
+            "level": "county",
+            "center": {
+              "longitude": 116.457628,
+              "latitude": 38.873185
+            }
+          },
+          {
+            "code": "131028",
+            "name": "大厂回族自治县",
+            "level": "county",
+            "center": {
+              "longitude": 116.98961,
+              "latitude": 39.886569
+            }
+          },
+          {
+            "code": "131081",
+            "name": "霸州市",
+            "level": "county",
+            "center": {
+              "longitude": 116.391488,
+              "latitude": 39.125238
+            }
+          },
+          {
+            "code": "131082",
+            "name": "三河市",
+            "level": "county",
+            "center": {
+              "longitude": 117.078269,
+              "latitude": 39.982933
+            }
+          }
+        ],
+        "center": {
+          "longitude": 116.683546,
+          "latitude": 39.538304
+        }
+      },
+      {
+        "code": "131100",
+        "name": "衡水市",
+        "level": "prefecture",
+        "children": [
+          {
+            "code": "131102",
+            "name": "桃城区",
+            "level": "county",
+            "center": {
+              "longitude": 115.675208,
+              "latitude": 37.735152
+            }
+          },
+          {
+            "code": "131103",
+            "name": "冀州区",
+            "level": "county",
+            "center": {
+              "longitude": 115.579392,
+              "latitude": 37.550922
+            }
+          },
+          {
+            "code": "131121",
+            "name": "枣强县",
+            "level": "county",
+            "center": {
+              "longitude": 115.724365,
+              "latitude": 37.514217
+            }
+          },
+          {
+            "code": "131122",
+            "name": "武邑县",
+            "level": "county",
+            "center": {
+              "longitude": 115.887498,
+              "latitude": 37.802036
+            }
+          },
+          {
+            "code": "131123",
+            "name": "武强县",
+            "level": "county",
+            "center": {
+              "longitude": 115.982119,
+              "latitude": 38.041447
+            }
+          },
+          {
+            "code": "131124",
+            "name": "饶阳县",
+            "level": "county",
+            "center": {
+              "longitude": 115.725898,
+              "latitude": 38.235313
+            }
+          },
+          {
+            "code": "131125",
+            "name": "安平县",
+            "level": "county",
+            "center": {
+              "longitude": 115.518918,
+              "latitude": 38.234769
+            }
+          },
+          {
+            "code": "131126",
+            "name": "故城县",
+            "level": "county",
+            "center": {
+              "longitude": 115.965877,
+              "latitude": 37.347873
+            }
+          },
+          {
+            "code": "131127",
+            "name": "景县",
+            "level": "county",
+            "center": {
+              "longitude": 116.270558,
+              "latitude": 37.692831
+            }
+          },
+          {
+            "code": "131128",
+            "name": "阜城县",
+            "level": "county",
+            "center": {
+              "longitude": 116.175424,
+              "latitude": 37.862984
+            }
+          },
+          {
+            "code": "131182",
+            "name": "深州市",
+            "level": "county",
+            "center": {
+              "longitude": 115.559576,
+              "latitude": 38.001535
+            }
+          }
+        ],
+        "center": {
+          "longitude": 115.668987,
+          "latitude": 37.739367
+        }
+      }
+    ],
+    "center": {
+      "longitude": 114.530399,
+      "latitude": 38.037707
+    }
+  }
+]
