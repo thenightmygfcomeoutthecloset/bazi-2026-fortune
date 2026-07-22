@@ -2,7 +2,7 @@
  * 命运星盘 — 统一应用控制器 (app.js)
  */
 
-import { calculateBaZi, CITY_LONGITUDES } from './bazi-engine.js';
+import { calculateBaZi, REGION_DATA } from './bazi-engine.js';
 import { analyzeFortune } from './fortune-analyzer.js';
 import { TAROT_SPREADS, generateCardSvg } from './tarot-data.js';
 import { shuffleDeck, performReading } from './tarot-engine.js';
@@ -88,7 +88,6 @@ function initBaziForm() {
     const daySelect = document.getElementById('birthDay');
     const hourSelect = document.getElementById('birthHour');
     const minuteSelect = document.getElementById('birthMinute');
-    const citySelect = document.getElementById('birthCity');
 
     if (!yearSelect) return;
 
@@ -146,14 +145,59 @@ function initBaziForm() {
         minuteSelect.appendChild(opt);
     }
 
-    // 城市
-    CITY_LONGITUDES.forEach((c) => {
-        const opt = document.createElement('option');
-        opt.value = c.lng;
-        opt.textContent = `${c.province} - ${c.city} (${c.lng}°E)`;
-        if (c.city === '北京') opt.selected = true;
-        citySelect.appendChild(opt);
-    });
+    // 地区三级联动
+    const provinceSelect = document.getElementById('birthProvince');
+    const citySelect = document.getElementById('birthCity');
+    const districtSelect = document.getElementById('birthDistrict');
+    
+    if (provinceSelect && citySelect && districtSelect) {
+        // 填充省份
+        Object.keys(REGION_DATA).forEach(prov => {
+            const opt = document.createElement('option');
+            opt.value = prov;
+            opt.textContent = prov;
+            if (prov === '北京') opt.selected = true;
+            provinceSelect.appendChild(opt);
+        });
+
+        // 更新城市
+        function updateCities() {
+            const prov = provinceSelect.value;
+            citySelect.innerHTML = '';
+            if (REGION_DATA[prov]) {
+                Object.keys(REGION_DATA[prov]).forEach((city, index) => {
+                    const opt = document.createElement('option');
+                    opt.value = city;
+                    opt.textContent = city;
+                    if (index === 0) opt.selected = true; // 默认选第一个城市
+                    citySelect.appendChild(opt);
+                });
+            }
+            updateDistricts();
+        }
+
+        // 更新区县
+        function updateDistricts() {
+            const prov = provinceSelect.value;
+            const city = citySelect.value;
+            districtSelect.innerHTML = '';
+            if (REGION_DATA[prov] && REGION_DATA[prov][city]) {
+                Object.entries(REGION_DATA[prov][city]).forEach(([dist, lng], index) => {
+                    const opt = document.createElement('option');
+                    opt.value = lng;
+                    opt.textContent = `${dist} (${lng}°E)`;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            }
+        }
+
+        provinceSelect.addEventListener('change', updateCities);
+        citySelect.addEventListener('change', updateDistricts);
+
+        // 初始填充
+        updateCities();
+    }
 
     // 性别
     const gMale = document.getElementById('genderMale');
@@ -175,7 +219,7 @@ function handleBaziSubmit(e) {
     const day = parseInt(document.getElementById('birthDay').value);
     const hour = parseInt(document.getElementById('birthHour').value);
     const minute = parseInt(document.getElementById('birthMinute').value);
-    const longitude = parseFloat(document.getElementById('birthCity').value);
+    const longitude = parseFloat(document.getElementById('birthDistrict').value);
     const genderEl = document.querySelector('input[name="gender"]:checked');
     const gender = genderEl ? genderEl.value : 'male';
 
