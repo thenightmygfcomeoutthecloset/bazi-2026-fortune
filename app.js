@@ -455,6 +455,8 @@ function resetTarotStage() {
     const container = document.getElementById('deckContainer');
     if (!container) return;
     container.innerHTML = '';
+    container.className = 'deck-container';
+    // 初始状态：展示一叠牌
     for (let i = 0; i < 6; i++) {
         const c = document.createElement('div');
         c.className = 'tarot-card-3d';
@@ -470,26 +472,32 @@ function handleTarotShuffle() {
     document.getElementById('stageStatus').textContent = '正在洗牌与凝聚能量…';
 
     const container = document.getElementById('deckContainer');
+    // 切换为全牌网格模式
+    container.className = 'deck-container deck-grid';
     container.innerHTML = '';
-    const tempCards = [];
-    const displayCount = Math.min(20, Math.max(10, tarotSpread.cardsCount * 2));
-    for (let i = 0; i < displayCount; i++) {
-        const c = document.createElement('div');
-        c.className = 'tarot-card-3d';
-        c.innerHTML = `<div class="card-face card-back"><div class="card-back-symbol">✦</div></div>`;
-        container.appendChild(c);
-        tempCards.push(c);
-    }
 
+    const actionBtn = document.getElementById('tarotActionBtn');
+    if (actionBtn) actionBtn.style.display = 'none';
+
+    // 洗牌动画延迟后铺开全部78张
     setTimeout(() => {
-        tempCards.forEach((c, i) => {
-            const tx = (i - 5) * 26;
-            c.style.transform = `translate(${tx}px, 0)`;
+        tarotDeck.forEach((card, i) => {
+            const c = document.createElement('div');
+            c.className = 'tarot-card-mini';
+            c.innerHTML = `<div class="card-back-symbol">✦</div>`;
             c.addEventListener('click', () => onTarotPick(i, c));
+            // 轻微随机旋转，增加仪式感
+            const rot = (Math.random() - 0.5) * 6;
+            c.style.transform = `rotate(${rot}deg)`;
+            container.appendChild(c);
+
+            // 入场动画（分批淡入）
+            c.style.opacity = '0';
+            setTimeout(() => { c.style.opacity = '1'; }, i * 8);
         });
+
         tarotStep = 'picking';
-        document.getElementById('stageStatus').textContent = `请凭直觉选择 ${tarotSpread.cardsCount} 张卡牌 (${tarotSelectedIndexes.length}/${tarotSpread.cardsCount})`;
-        document.getElementById('tarotActionBtn').style.display = 'none';
+        document.getElementById('stageStatus').textContent = `凭直觉从 78 张牌中选择 ${tarotSpread.cardsCount} 张 (0/${tarotSpread.cardsCount})`;
     }, 800);
 }
 
@@ -498,9 +506,8 @@ function onTarotPick(idx, el) {
 
     playTarotSound('flip');
     tarotSelectedIndexes.push(idx);
-    el.style.transform += ' translateY(-25px) scale(1.05)';
-    el.style.boxShadow = '0 0 20px rgba(212,175,55,0.6)';
-    document.getElementById('stageStatus').textContent = `已选择 ${tarotSelectedIndexes.length}/${tarotSpread.cardsCount} 张卡牌`;
+    el.classList.add('selected');
+    document.getElementById('stageStatus').textContent = `已选择 ${tarotSelectedIndexes.length}/${tarotSpread.cardsCount} 张 · ${tarotSpread.cardsCount - tarotSelectedIndexes.length > 0 ? '继续凭直觉选牌' : '解读中…'}`;
 
     if (tarotSelectedIndexes.length === tarotSpread.cardsCount) {
         tarotStep = 'done';
