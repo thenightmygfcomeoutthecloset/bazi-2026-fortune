@@ -13,7 +13,6 @@ let activeMode = 'portal';
 // 塔罗状态
 let tarotSpread = TAROT_SPREADS[0];
 let tarotDeck = [];
-let tarotDeck = [];
 let tarotSelectedIndexes = [];
 let REGION_DATA = {};
 let currentGeoLongitude = null; // Store fetched geolocation if any
