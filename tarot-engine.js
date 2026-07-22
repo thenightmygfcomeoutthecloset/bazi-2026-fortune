@@ -3,14 +3,14 @@
  */
 import { FULL_DECK, TAROT_SPREADS } from './tarot-data.js';
 
-export function shuffleDeck(deckSize = 78) {
+export function shuffleDeck(deckSize = 78, allowReversed = true) {
     const deck = FULL_DECK.map(card => ({ ...card }));
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
     return deck.map(card => {
-        const isReversed = Math.random() < 0.3;
+        const isReversed = allowReversed ? (Math.random() < 0.3) : false;
         return {
             ...card,
             isReversed,

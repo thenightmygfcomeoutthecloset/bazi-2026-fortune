@@ -127,6 +127,44 @@ export const TAROT_SPREADS = [
         ]
     },
     {
+        id: 'love_reunion',
+        name: '爱情复合牌阵',
+        cardsCount: 5,
+        description: '深度探索两人关系现状，阻碍与复合的可能性。',
+        positions: [
+            { label: '1.你们关系现状' },
+            { label: '2.对方真实心意' },
+            { label: '3.复合最大阻碍' },
+            { label: '4.你的应对建议' },
+            { label: '5.最终复合概率' }
+        ]
+    },
+    {
+        id: 'career_jump',
+        name: '职场跳槽决策牌阵',
+        cardsCount: 4,
+        description: '分析留任与跳槽的利弊，给出最优职业发展建议。',
+        positions: [
+            { label: '1.留任发展前景' },
+            { label: '2.跳槽潜在机遇' },
+            { label: '3.隐藏风险挑战' },
+            { label: '4.宇宙最终指引' }
+        ]
+    },
+    {
+        id: 'two_choices',
+        name: '二选一十字路口',
+        cardsCount: 5,
+        description: '当你面临 A 和 B 两个明确选项时的最佳抉择工具。',
+        positions: [
+            { label: '1.当下的核心问题' },
+            { label: '2.选 A 的发展趋势' },
+            { label: '3.选 B 的发展趋势' },
+            { label: '4.选 A 的最终结果' },
+            { label: '5.选 B 的最终结果' }
+        ]
+    },
+    {
         id: 'single',
         name: '单牌直觉求问',
         cardsCount: 1,

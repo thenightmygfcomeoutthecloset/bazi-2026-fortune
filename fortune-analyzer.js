@@ -407,7 +407,11 @@ export function analyzeFortune(baziResult) {
             else if (daYunElement === jiShen) luckStatus = '波折 (忌神当道)';
             
             currentDaYun.desc = `当前处于【${currentDaYun.ganZhi}】大运（${currentDaYun.yearStart} - ${currentDaYun.yearEnd}年），十神为${daYunTenGod}。此步大运五行属${WU_XING_NAMES[daYunElement]}，是您的${daYunElement === xiYong ? '喜用神' : (daYunElement === jiShen ? '忌神' : '平神')}，整体大运基调：${luckStatus}。
-2026 丙午流年：流年天干为丙火，地支为午火。火炎土燥，需注意情绪波动与突发变化。`;
+
+✨ **近三年流年运势走向**：
+- **2026 丙午年 (马)**：流年天干为丙火，地支为午火。火气极旺，${dayMasterAnalysis.xiYong.index === 2 ? '大吉大利，事业财运双丰收！' : (dayMasterAnalysis.jiShen.index === 2 ? '需谨慎行事，避免情绪冲动和破财风险。' : '运势起伏，在变动中寻找机会。')}
+- **2027 丁未年 (羊)**：流年天干为丁火，地支为未土。火土相生，${dayMasterAnalysis.xiYong.index === 3 || dayMasterAnalysis.xiYong.index === 2 ? '运势稳步上升，适合拓展人脉和资源。' : '宜保守理财，关注自身健康。'}
+- **2028 戊申年 (猴)**：流年天干为戊土，地支为申金。土金相生，${dayMasterAnalysis.xiYong.index === 4 || dayMasterAnalysis.xiYong.index === 0 ? '金气显现，财运事业迎来新机遇，大展宏图之年！' : '可能面临一些压力与挑战，需稳扎稳打。'}`;
         }
     }
 

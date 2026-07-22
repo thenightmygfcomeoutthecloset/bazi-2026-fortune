@@ -323,11 +323,20 @@ function renderBaziResults(bazi, fortune) {
     `;
 
     const wx = bazi.wuXing;
-    let wxHtml = '<div style="display: flex; gap: 12px; margin-bottom: 16px;">';
+    const maxCount = Math.max(...wx.counts, 1);
+    const wuXingColors = ['#f59e0b', '#4ade80', '#60a5fa', '#f87171', '#fbbf24']; // 金木水火土 (近似色)
+    
+    let wxHtml = '<div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">';
     wx.names.forEach((name, i) => {
-        wxHtml += `<div style="flex:1; text-align:center; padding:12px; background:rgba(255,255,255,0.03); border-radius:8px;">
-            <div style="font-weight:bold; color:var(--gold-light);">${name}</div>
-            <div style="font-size:0.85rem; color:var(--text-secondary);">${wx.counts[i]}</div>
+        const count = wx.counts[i];
+        const pct = (count / maxCount) * 100;
+        wxHtml += `
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; font-weight: bold; color: var(--gold-light); text-align: right;">${name}</div>
+            <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                <div style="width: ${pct}%; height: 100%; background: ${wuXingColors[i]}; border-radius: 4px; transition: width 1s ease-out;"></div>
+            </div>
+            <div style="width: 40px; font-size: 0.85rem; color: var(--text-secondary); text-align: left;">${count}</div>
         </div>`;
     });
     wxHtml += '</div>';
@@ -468,7 +477,8 @@ function resetTarotStage() {
 
 function handleTarotShuffle() {
     playTarotSound('shuffle');
-    tarotDeck = shuffleDeck();
+    const allowReversed = document.getElementById('allowReversed') ? document.getElementById('allowReversed').checked : true;
+    tarotDeck = shuffleDeck(78, allowReversed);
     document.getElementById('stageStatus').textContent = '正在洗牌与凝聚能量…';
 
     const container = document.getElementById('deckContainer');
