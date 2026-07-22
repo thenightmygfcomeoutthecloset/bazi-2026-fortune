@@ -59,17 +59,16 @@ export function switchMode(mode) {
 window.switchMode = switchMode;
 
 function initNavigation() {
-    const bindClick = (id, mode) => {
+    // 导航按鈕由 JS 统一管理， HTML onclick 仅作备用调用，不会冲突
+    // 这里只绑定纯导航元素，首页卡片由 HTML inline onclick 处理
+    const bindNav = (id, mode) => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener('click', (e) => { e.preventDefault(); switchMode(mode); });
+        if (el) el.addEventListener('click', (e) => { e.stopPropagation(); switchMode(mode); });
     };
-
-    bindClick('navLogo', 'portal');
-    bindClick('navHomeBtn', 'portal');
-    bindClick('navBaziBtn', 'bazi');
-    bindClick('navTarotBtn', 'tarot');
-    bindClick('portalBaziCard', 'bazi');
-    bindClick('portalTarotCard', 'tarot');
+    bindNav('navLogo', 'portal');
+    bindNav('navHomeBtn', 'portal');
+    bindNav('navBaziBtn', 'bazi');
+    bindNav('navTarotBtn', 'tarot');
 }
 
 // ============================================================
@@ -226,14 +225,18 @@ function handleBaziSubmit(e) {
     showLoading('紫微真太阳时推演中…');
 
     setTimeout(() => {
-        const bazi = calculateBaZi(year, month, day, hour, minute, longitude, gender);
-        const fortune = analyzeFortune(bazi);
-
-        renderBaziResults(bazi, fortune);
-
-        hideLoading();
-        document.getElementById('baziFormCard').classList.add('hidden');
-        document.getElementById('baziResultSection').classList.remove('hidden');
+        try {
+            const bazi = calculateBaZi(year, month, day, hour, minute, longitude, gender);
+            const fortune = analyzeFortune(bazi);
+            renderBaziResults(bazi, fortune);
+            hideLoading();
+            document.getElementById('baziFormCard').classList.add('hidden');
+            document.getElementById('baziResultSection').classList.remove('hidden');
+        } catch (err) {
+            hideLoading();
+            console.error('[BaZi] 排盘错误:', err);
+            alert('排盘计算出现异常，请检查输入信息后重试。\n错误信息：' + err.message);
+        }
     }, 1200);
 }
 
@@ -433,7 +436,8 @@ function handleTarotShuffle() {
     const container = document.getElementById('deckContainer');
     container.innerHTML = '';
     const tempCards = [];
-    for (let i = 0; i < 10; i++) {
+    const displayCount = Math.min(20, Math.max(10, tarotSpread.cardsCount * 2));
+    for (let i = 0; i < displayCount; i++) {
         const c = document.createElement('div');
         c.className = 'tarot-card-3d';
         c.innerHTML = `<div class="card-face card-back"><div class="card-back-symbol">✦</div></div>`;

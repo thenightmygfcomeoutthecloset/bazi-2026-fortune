@@ -34,20 +34,20 @@ const SUITS = [
 ];
 
 const NUMBERS = [
-    { id: 1, name: '王牌(Ace)', keyword: '纯粹的起始' },
-    { id: 2, name: '数字2', keyword: '平衡与选择' },
-    { id: 3, name: '数字3', keyword: '初步的成果' },
-    { id: 4, name: '数字4', keyword: '稳定与停滞' },
-    { id: 5, name: '数字5', keyword: '冲突与改变' },
-    { id: 6, name: '数字6', keyword: '和谐与恢复' },
-    { id: 7, name: '数字7', keyword: '反思与挑战' },
-    { id: 8, name: '数字8', keyword: '专注与力量' },
-    { id: 9, name: '数字9', keyword: '接近顶峰' },
-    { id: 10, name: '数字10', keyword: '终极状态' },
-    { id: 11, name: '侍从(Page)', keyword: '新消息与学习' },
-    { id: 12, name: '骑士(Knight)', keyword: '行动与推进' },
-    { id: 13, name: '王后(Queen)', keyword: '内化与掌控' },
-    { id: 14, name: '国王(King)', keyword: '外显与权威' }
+    { id: 1,  name: '王牌(Ace)',   nameEn: 'Ace',    keyword: '纯粹的起始' },
+    { id: 2,  name: '数字2',      nameEn: 'Two',    keyword: '平衡与选择' },
+    { id: 3,  name: '数字3',      nameEn: 'Three',  keyword: '初步的成果' },
+    { id: 4,  name: '数字4',      nameEn: 'Four',   keyword: '稳定与停滞' },
+    { id: 5,  name: '数字5',      nameEn: 'Five',   keyword: '冲突与改变' },
+    { id: 6,  name: '数字6',      nameEn: 'Six',    keyword: '和谐与恢复' },
+    { id: 7,  name: '数字7',      nameEn: 'Seven',  keyword: '反思与挑战' },
+    { id: 8,  name: '数字8',      nameEn: 'Eight',  keyword: '专注与力量' },
+    { id: 9,  name: '数字9',      nameEn: 'Nine',   keyword: '接近顶峰' },
+    { id: 10, name: '数字10',     nameEn: 'Ten',    keyword: '终极状态' },
+    { id: 11, name: '侍从(Page)', nameEn: 'Page',   keyword: '新消息与学习' },
+    { id: 12, name: '骑士(Knight)',nameEn: 'Knight', keyword: '行动与推进' },
+    { id: 13, name: '王后(Queen)', nameEn: 'Queen',  keyword: '内化与掌控' },
+    { id: 14, name: '国王(King)',  nameEn: 'King',   keyword: '外显与权威' }
 ];
 
 export const MINOR_ARCANA = [];
@@ -56,7 +56,7 @@ SUITS.forEach(suit => {
         MINOR_ARCANA.push({
             id: `minor_${suit.id}_${num.id}`,
             name: `${suit.name}${num.name}`,
-            nameEn: `${num.name} of ${suit.id}`,
+            nameEn: `${num.nameEn} of ${suit.id.charAt(0).toUpperCase() + suit.id.slice(1)}`,
             element: suit.element,
             keywordsUpright: [suit.desc, num.keyword, '正向发展'],
             keywordsReversed: ['元素受阻', '发展不顺', '逆境'],

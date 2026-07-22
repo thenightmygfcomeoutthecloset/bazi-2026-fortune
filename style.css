@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    2026 命运星盘 — 八字(真太阳时)与塔罗二合一二合一样式
    ============================================================ */
 
@@ -485,13 +485,19 @@ body {
     .hero-title { font-size: 2.2rem; }
 }
 
- . c e l t i c - c r o s s - l a y o u t   { 
-         g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 5 ,   1 f r )   ! i m p o r t a n t ; 
- } 
- @ m e d i a   ( m a x - w i d t h :   8 0 0 p x )   { 
-         . c e l t i c - c r o s s - l a y o u t   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 3 ,   1 f r )   ! i m p o r t a n t ;   } 
- } 
- @ m e d i a   ( m a x - w i d t h :   5 0 0 p x )   { 
-         . c e l t i c - c r o s s - l a y o u t   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 2 ,   1 f r )   ! i m p o r t a n t ;   } 
- }  
- 
+.celtic-cross-layout {
+    grid-template-columns: repeat(5, 1fr) !important;
+}
+@media (max-width: 800px) {
+    .celtic-cross-layout { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 500px) {
+    .celtic-cross-layout { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+.dayun-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+}
