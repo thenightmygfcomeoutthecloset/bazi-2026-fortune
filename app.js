@@ -262,7 +262,6 @@ function handleBaziSubmit(e) {
             const bazi = calculateBaZi(year, month, day, hour, minute, longitude, gender);
             let fortune = analyzeFortune(bazi);
             
-            document.getElementById('baziResultDetails').innerHTML = fortune;
             renderBaziResults(bazi, fortune);
             hideLoading();
             document.getElementById('baziFormCard').classList.add('hidden');
