@@ -294,6 +294,90 @@ function getNaYin(stem, branch) {
 
 export const SHENG_XIAO = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
 
+// ============================================================
+//  大运计算算法 (Da Yun)
+// ============================================================
+const JIE_DATES = [5, 4, 5, 4, 5, 5, 7, 7, 7, 8, 7, 7];
+
+function getJieDate(year, month) {
+    let day = JIE_DATES[month - 1];
+    if (month >= 3 && ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)) {
+        day -= 1;
+    }
+    return new Date(year, month - 1, day);
+}
+
+function calculateDaYun(year, month, day, yearStem, monthStem, monthBranch, gender) {
+    const isYangYear = yearStem % 2 === 0;
+    const isMale = gender === 'male';
+    const isForward = (isYangYear && isMale) || (!isYangYear && !isMale);
+
+    const birthDate = new Date(year, month - 1, day);
+    
+    let currentJie = getJieDate(year, month);
+    let prevJie, nextJie;
+
+    if (birthDate >= currentJie) {
+        prevJie = currentJie;
+        let nextMonth = month + 1;
+        let nextYear = year;
+        if (nextMonth > 12) { nextMonth = 1; nextYear++; }
+        nextJie = getJieDate(nextYear, nextMonth);
+    } else {
+        nextJie = currentJie;
+        let prevMonth = month - 1;
+        let prevYear = year;
+        if (prevMonth < 1) { prevMonth = 12; prevYear--; }
+        prevJie = getJieDate(prevYear, prevMonth);
+    }
+
+    let diffDays = 0;
+    if (isForward) {
+        diffDays = (nextJie - birthDate) / (1000 * 60 * 60 * 24);
+    } else {
+        diffDays = (birthDate - prevJie) / (1000 * 60 * 60 * 24);
+    }
+    if (diffDays < 0) diffDays = 0;
+
+    const startAge = Math.max(1, Math.round(diffDays / 3)); 
+    const startYear = year + startAge;
+
+    const daYun = [];
+    let curStem = monthStem;
+    let curBranch = monthBranch;
+
+    for (let i = 0; i < 8; i++) {
+        if (isForward) {
+            curStem = (curStem + 1) % 10;
+            curBranch = (curBranch + 1) % 12;
+        } else {
+            curStem = (curStem + 9) % 10;
+            curBranch = (curBranch + 11) % 12;
+        }
+        
+        const ageStart = startAge + i * 10;
+        const yearStart = startYear + i * 10;
+        const yearEnd = yearStart + 9;
+
+        daYun.push({
+            index: i,
+            stem: curStem,
+            branch: curBranch,
+            ganZhi: TIAN_GAN[curStem] + DI_ZHI[curBranch],
+            ageStart,
+            yearStart,
+            yearEnd
+        });
+    }
+
+    return {
+        isForward,
+        startAge,
+        startYear,
+        pillars: daYun
+    };
+}
+
 /**
  * 主入口：排盘（支持真太阳时经度校正）
  */
@@ -355,6 +439,11 @@ export function calculateBaZi(year, month, day, hour, minute, longitude = 120.0,
         branchTenGod: getTenGod(dayStem, BRANCH_HIDDEN_STEMS[m.branch][0]),
     }));
 
+    const daYun = calculateDaYun(
+        trueSolar.adjustedYear, trueSolar.adjustedMonth, trueSolar.adjustedDay,
+        yearPillar.stem, monthPillar.stem, monthPillar.branch, gender
+    );
+
     return {
         input: { year, month, day, hour, minute, longitude, gender },
         trueSolar,
@@ -365,5 +454,6 @@ export function calculateBaZi(year, month, day, hour, minute, longitude = 120.0,
         wuXing,
         zodiac,
         monthlyTenGods,
+        daYun,
     };
 }

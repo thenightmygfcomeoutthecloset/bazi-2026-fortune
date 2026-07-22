@@ -476,3 +476,14 @@ body {
     .pillars-grid { grid-template-columns: repeat(2, 1fr); }
     .portal-grid { grid-template-columns: 1fr; }
 }
+
+ . c e l t i c - c r o s s - l a y o u t   { 
+         g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 5 ,   1 f r )   ! i m p o r t a n t ; 
+ } 
+ @ m e d i a   ( m a x - w i d t h :   8 0 0 p x )   { 
+         . c e l t i c - c r o s s - l a y o u t   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 3 ,   1 f r )   ! i m p o r t a n t ;   } 
+ } 
+ @ m e d i a   ( m a x - w i d t h :   5 0 0 p x )   { 
+         . c e l t i c - c r o s s - l a y o u t   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 2 ,   1 f r )   ! i m p o r t a n t ;   } 
+ }  
+ 

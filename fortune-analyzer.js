@@ -374,7 +374,42 @@ function adjustForXiYong(scores, monthElement, dayMasterAnalysis) {
  * @returns {object} 运势分析结果
  */
 export function analyzeFortune(baziResult) {
-    const { dayMaster, dayMasterAnalysis, monthlyTenGods, wuXing } = baziResult;
+    const { dayMaster, dayMasterAnalysis, monthlyTenGods, wuXing, daYun } = baziResult;
+
+    // 大运流年分析 (针对 2026 丙午流年)
+    let currentDaYun = null;
+    if (daYun && daYun.pillars && daYun.pillars.length > 0) {
+        const yearTarget = 2026;
+        currentDaYun = daYun.pillars.find(p => yearTarget >= p.yearStart && yearTarget <= p.yearEnd);
+        if (!currentDaYun) {
+            if (yearTarget < daYun.startYear) {
+                currentDaYun = {
+                    isChild: true,
+                    ganZhi: '未起运 (童限)',
+                    stemTenGod: '未知',
+                    desc: '目前处于童限（未起运）阶段，运势暂由月柱主导，需待起运后方见分晓。'
+                };
+            } else {
+                currentDaYun = { ...daYun.pillars[daYun.pillars.length - 1], isLate: true }; 
+            }
+        }
+        
+        if (currentDaYun && !currentDaYun.isChild) {
+            const daYunTenGod = getTenGod(dayMaster.stem, currentDaYun.stem);
+            currentDaYun.stemTenGod = daYunTenGod;
+            const daYunElement = STEM_TO_ELEMENT[currentDaYun.stem];
+            
+            const xiYong = dayMasterAnalysis.xiYong.index;
+            const jiShen = dayMasterAnalysis.jiShen.index;
+            
+            let luckStatus = '平稳过渡';
+            if (daYunElement === xiYong) luckStatus = '大吉 (喜用神当道)';
+            else if (daYunElement === jiShen) luckStatus = '波折 (忌神当道)';
+            
+            currentDaYun.desc = `当前处于【${currentDaYun.ganZhi}】大运（${currentDaYun.yearStart} - ${currentDaYun.yearEnd}年），十神为${daYunTenGod}。此步大运五行属${WU_XING_NAMES[daYunElement]}，是您的${daYunElement === xiYong ? '喜用神' : (daYunElement === jiShen ? '忌神' : '平神')}，整体大运基调：${luckStatus}。
+2026 丙午流年：流年天干为丙火，地支为午火。火炎土燥，需注意情绪波动与突发变化。`;
+        }
+    }
 
     // 幸运提示（基于喜用神五行）
     const xiYongElement = dayMasterAnalysis.xiYong.name;
@@ -456,6 +491,7 @@ export function analyzeFortune(baziResult) {
         },
         luckyInfo,
         dayMasterDesc,
+        currentDaYun
     };
 }
 

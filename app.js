@@ -297,12 +297,46 @@ function renderBaziResults(bazi, fortune) {
     const lucky = fortune.luckyInfo;
     document.getElementById('luckyCard').innerHTML = `
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; text-align: center;">
-            <div><div style="font-size:0.75rem; color:var(--text-muted);">幸运颜色</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.colors.join('、')}</div></div>
-            <div><div style="font-size:0.75rem; color:var(--text-muted);">吉利方位</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.direction}</div></div>
-            <div><div style="font-size:0.75rem; color:var(--text-muted);">幸运数字</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.numbers.join('、')}</div></div>
-            <div><div style="font-size:0.75rem; color:var(--text-muted);">开运食物</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.foods.join('、')}</div></div>
+            <div><div style="font-size:0.75rem; color:var(--text-muted);">幸运色</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.colors.join('、')}</div></div>
+            <div><div style="font-size:0.75rem; color:var(--text-muted);">开运方位</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.direction}</div></div>
+            <div><div style="font-size:0.75rem; color:var(--text-muted);">幸运数</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.numbers.join('、')}</div></div>
+            <div><div style="font-size:0.75rem; color:var(--text-muted);">饮食建议</div><div style="color:var(--gold-light); font-weight:bold;">${lucky.foods.join('、')}</div></div>
         </div>
     `;
+
+    // 渲染大运流年
+    if (fortune.currentDaYun) {
+        document.getElementById('daYunCard').innerHTML = `
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.3); border-radius:12px; padding:16px;">
+                <p style="font-size:0.95rem; line-height:1.6; color:var(--text-secondary); margin:0;">
+                    ${fortune.currentDaYun.desc.replace(/\n/g, '<br/>')}
+                </p>
+            </div>
+        `;
+    }
+
+    if (bazi.daYun && bazi.daYun.pillars) {
+        document.getElementById('daYunTimeline').innerHTML = bazi.daYun.pillars.map(p => {
+            const isCurrent = fortune.currentDaYun && fortune.currentDaYun.index === p.index;
+            return `
+                <div style="
+                    min-width: 80px; 
+                    padding: 12px 8px; 
+                    text-align: center; 
+                    border-radius: 8px; 
+                    background: ${isCurrent ? 'rgba(212,175,55,0.15)' : 'rgba(255,255,255,0.03)'};
+                    border: 1px solid ${isCurrent ? 'var(--gold)' : 'rgba(255,255,255,0.1)'};
+                    transition: all 0.3s;
+                ">
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">${p.ageStart}岁起运</div>
+                    <div style="font-family:var(--font-serif); font-size:1.1rem; color:var(--gold-light); font-weight:bold; margin-bottom:4px;">
+                        ${p.ganZhi}
+                    </div>
+                    <div style="font-size:0.7rem; color:var(--text-secondary);">${p.yearStart}-${p.yearEnd}</div>
+                </div>
+            `;
+        }).join('');
+    }
 
     document.getElementById('monthCards').innerHTML = fortune.months.map(m => `
         <div style="background:var(--bg-card); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:20px; margin-bottom:16px;">
@@ -436,6 +470,11 @@ function displayTarotResults() {
     resSec.classList.remove('hidden');
 
     const cardsGrid = document.getElementById('tarotCardsGrid');
+    cardsGrid.className = 'result-cards-grid';
+    if (reading.spread.id === 'celtic_cross') {
+        cardsGrid.classList.add('celtic-cross-layout');
+    }
+
     cardsGrid.innerHTML = reading.drawnCards.map((c, i) => `
         <div class="result-card-item">
             <div style="font-size:0.8rem; color:var(--gold-light); margin-bottom:8px;">${c.positionLabel}</div>

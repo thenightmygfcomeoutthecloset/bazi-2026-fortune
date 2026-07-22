@@ -26,7 +26,70 @@ export const MAJOR_ARCANA = [
     { id: 21, name: '世界', nameEn: 'The World', element: '土', keywordsUpright: ['圆满完成', '大功告成', '自由'], keywordsReversed: ['未臻完善', '缺乏收尾', '迟延'], uprightDesc: '一段漫长旅程迎来了辉煌终点。身心灵达到高度统一与自由。', reversedDesc: '逆位距离圆满还差最后一步。坚持到底方能功德圆满。', advice: '庆祝你所取得的成就，天地辽阔。', iconSymbol: '🌍' }
 ];
 
+const SUITS = [
+    { id: 'wands', name: '权杖', element: '火', icon: '🪵', desc: '行动、创造、激情与灵感' },
+    { id: 'cups', name: '圣杯', element: '水', icon: '🏆', desc: '情感、直觉、人际与爱' },
+    { id: 'swords', name: '宝剑', element: '风', icon: '⚔️', desc: '思想、冲突、理智与决断' },
+    { id: 'pentacles', name: '星币', element: '土', icon: '🪙', desc: '物质、财富、现实与成就' }
+];
+
+const NUMBERS = [
+    { id: 1, name: '王牌(Ace)', keyword: '纯粹的起始' },
+    { id: 2, name: '数字2', keyword: '平衡与选择' },
+    { id: 3, name: '数字3', keyword: '初步的成果' },
+    { id: 4, name: '数字4', keyword: '稳定与停滞' },
+    { id: 5, name: '数字5', keyword: '冲突与改变' },
+    { id: 6, name: '数字6', keyword: '和谐与恢复' },
+    { id: 7, name: '数字7', keyword: '反思与挑战' },
+    { id: 8, name: '数字8', keyword: '专注与力量' },
+    { id: 9, name: '数字9', keyword: '接近顶峰' },
+    { id: 10, name: '数字10', keyword: '终极状态' },
+    { id: 11, name: '侍从(Page)', keyword: '新消息与学习' },
+    { id: 12, name: '骑士(Knight)', keyword: '行动与推进' },
+    { id: 13, name: '王后(Queen)', keyword: '内化与掌控' },
+    { id: 14, name: '国王(King)', keyword: '外显与权威' }
+];
+
+export const MINOR_ARCANA = [];
+SUITS.forEach(suit => {
+    NUMBERS.forEach(num => {
+        MINOR_ARCANA.push({
+            id: `minor_${suit.id}_${num.id}`,
+            name: `${suit.name}${num.name}`,
+            nameEn: `${num.name} of ${suit.id}`,
+            element: suit.element,
+            keywordsUpright: [suit.desc, num.keyword, '正向发展'],
+            keywordsReversed: ['元素受阻', '发展不顺', '逆境'],
+            uprightDesc: `${suit.name}代表的【${suit.desc}】能量，在【${num.keyword}】的阶段得到了正向发挥。建议顺势而为。`,
+            reversedDesc: `${suit.name}能量受阻或过度，导致在【${num.keyword}】阶段出现波折。建议调整心态，寻找根源。`,
+            advice: `结合${suit.name}的特质，在当前局面中寻找突破口。`,
+            iconSymbol: suit.icon,
+            isMinor: true
+        });
+    });
+});
+
+export const FULL_DECK = [...MAJOR_ARCANA, ...MINOR_ARCANA];
+
 export const TAROT_SPREADS = [
+    {
+        id: 'celtic_cross',
+        name: '凯尔特十字牌阵',
+        cardsCount: 10,
+        description: '最经典的深度塔罗牌阵，全方位剖析复杂问题的核心、内外因素及最终结果。',
+        positions: [
+            { label: '1.现状(核心)' },
+            { label: '2.阻碍(挑战)' },
+            { label: '3.目标(意识)' },
+            { label: '4.根基(潜意识)' },
+            { label: '5.过去(近期)' },
+            { label: '6.未来(短期)' },
+            { label: '7.自我(态度)' },
+            { label: '8.环境(外界)' },
+            { label: '9.希望与恐惧' },
+            { label: '10.最终结果' }
+        ]
+    },
     {
         id: 'h2_2026',
         name: '2026 下半年运势流月牌阵',
@@ -75,6 +138,8 @@ export const TAROT_SPREADS = [
 ];
 
 export function generateCardSvg(card, isReversed = false) {
+    const isMinor = card.isMinor;
+    const title = isMinor ? card.name : card.id;
     return `
         <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg" class="tarot-card-svg ${isReversed ? 'svg-reversed' : ''}">
             <defs>
@@ -86,13 +151,14 @@ export function generateCardSvg(card, isReversed = false) {
             </defs>
             <rect x="4" y="4" width="192" height="312" rx="12" fill="#120e24" stroke="url(#goldGradTarot)" stroke-width="2" />
             <rect x="10" y="10" width="180" height="300" rx="8" fill="none" stroke="url(#goldGradTarot)" stroke-width="1" stroke-dasharray="4,2" />
-            <text x="100" y="36" font-family="serif" font-size="14" font-weight="bold" fill="url(#goldGradTarot)" text-anchor="middle">${card.id}</text>
+            <text x="100" y="36" font-family="serif" font-size="${isMinor ? '11' : '14'}" font-weight="bold" fill="url(#goldGradTarot)" text-anchor="middle">${title}</text>
             <g transform="translate(100, 150)">
                 <circle r="42" fill="none" stroke="url(#goldGradTarot)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
                 <text x="0" y="14" font-size="44" text-anchor="middle">${card.iconSymbol}</text>
             </g>
             <rect x="30" y="260" width="140" height="32" rx="4" fill="rgba(18,14,36,0.9)" stroke="url(#goldGradTarot)" stroke-width="1" />
-            <text x="100" y="280" font-family="serif" font-size="13" font-weight="bold" fill="#f7fafc" text-anchor="middle">${card.name} ${isReversed ? '(逆)' : ''}</text>
+            <text x="100" y="278" font-family="serif" font-size="11" font-weight="bold" fill="#f7fafc" text-anchor="middle">${card.name}</text>
+            ${isReversed ? `<text x="100" y="292" font-family="serif" font-size="10" font-weight="bold" fill="#f87171" text-anchor="middle">(逆位)</text>` : `<text x="100" y="292" font-family="serif" font-size="10" font-weight="bold" fill="#4ade80" text-anchor="middle">(正位)</text>`}
         </svg>
     `;
 }
