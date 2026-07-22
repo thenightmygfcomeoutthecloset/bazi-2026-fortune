@@ -205,7 +205,7 @@ function initBaziForm() {
                 Object.entries(REGION_DATA[prov][city]).forEach(([dist, lng], index) => {
                     const opt = document.createElement('option');
                     opt.value = lng;
-                    opt.textContent = `${dist} (${lng}°E)`;
+                    opt.textContent = dist;
                     if (index === 0) opt.selected = true;
                     districtSelect.appendChild(opt);
                 });
@@ -217,35 +217,6 @@ function initBaziForm() {
 
         // 初始填充
         updateCities();
-    }
-
-    // Geolocation API 绑定
-    const geoBtn = document.getElementById('geoLocateBtn');
-    if (geoBtn) {
-        geoBtn.addEventListener('click', () => {
-            if (!navigator.geolocation) {
-                alert('您的浏览器不支持地理位置功能');
-                return;
-            }
-            geoBtn.innerHTML = '⏳ 定位中...';
-            navigator.geolocation.getCurrentPosition((position) => {
-                const lng = position.coords.longitude;
-                currentGeoLongitude = lng; // 保存当前位置，用于风水测算
-                
-                // 自动切换到自定义经度
-                provinceSelect.value = '海外 / 自定义';
-                provinceSelect.dispatchEvent(new Event('change'));
-                const customLngInput = document.getElementById('customLongitude');
-                if (customLngInput) {
-                    customLngInput.value = lng.toFixed(4);
-                }
-                geoBtn.innerHTML = '✅ 定位成功 (' + lng.toFixed(2) + '°)';
-                setTimeout(() => { geoBtn.innerHTML = '📍 重新定位'; }, 3000);
-            }, (error) => {
-                alert('获取位置失败，请确认是否授予了浏览器定位权限。');
-                geoBtn.innerHTML = '📍 获取定位';
-            }, { timeout: 10000, enableHighAccuracy: true });
-        });
     }
 
     // 性别
@@ -287,36 +258,6 @@ function handleBaziSubmit(e) {
             const bazi = calculateBaZi(year, month, day, hour, minute, longitude, gender);
             let fortune = analyzeFortune(bazi);
             
-            // 空间风水学：如果用户有当前实时定位，且当前位置经度与出生地经度相差较大（超过1度，约百公里）
-            if (currentGeoLongitude !== null) {
-                const diff = currentGeoLongitude - longitude;
-                if (Math.abs(diff) > 0.1) {
-                    const direction = diff > 0 ? "正东" : "正西";
-                    const element = diff > 0 ? "木" : "金";
-                    let analysis = "";
-                    
-                    if (bazi.dayMaster.includes("木")) analysis = diff > 0 ? "木遇东风，如虎添翼，近期事业和财运均有明显抬升，贵人运极佳。" : "西方金克木，近期可能感到些许压力或阻碍，需保持蛰伏，厚积薄发。";
-                    else if (bazi.dayMaster.includes("火")) analysis = diff > 0 ? "东方木生火，得地利之助，近期灵感爆发，才华得以施展。" : "西方金耗火，求财稍显辛苦，需注意劳逸结合。";
-                    else if (bazi.dayMaster.includes("土")) analysis = diff > 0 ? "东方木克土，可能面临新的挑战与考核，但度过即可破茧成蝶。" : "西方土生金，食伤生财，近期适合进行投资理财或发挥口才。";
-                    else if (bazi.dayMaster.includes("金")) analysis = diff > 0 ? "金克木为财，东方为您目前的财位，近期有意外之喜或偏财入账。" : "金遇西方为比劫，朋友聚会增多，但也容易有不必要的破耗。";
-                    else if (bazi.dayMaster.includes("水")) analysis = diff > 0 ? "水生木为食伤，东方激发了您的创造力，适合开启新项目。" : "西方金生水，印星发力，近期容易得到长辈提拔或学术突破。";
-                    
-                    const fengShuiCard = `
-                        <div class="fortune-card">
-                            <h4 style="color: var(--gold-light); margin-bottom: 10px; font-size: 1.1rem;">
-                                🧭 空间风水学: 当前地理磁场分析
-                            </h4>
-                            <p style="font-size: 0.95rem; line-height: 1.6;">
-                                系统检测到您当前的实时定位 (${currentGeoLongitude.toFixed(2)}°) 位于您出生地 (${longitude.toFixed(2)}°) 的<strong>${direction}方</strong>。
-                                <br><br>
-                                根据五行生克，${direction}属${element}。结合您的日主【${bazi.dayMaster}】，<strong>${analysis}</strong>
-                            </p>
-                        </div>
-                    `;
-                    fortune += fengShuiCard;
-                }
-            }
-
             document.getElementById('baziResultDetails').innerHTML = fortune;
             renderBaziResults(bazi, fortune);
             hideLoading();
