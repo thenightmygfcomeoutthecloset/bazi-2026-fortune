@@ -34,6 +34,17 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.7;
+    scrollbar-color: var(--gold) var(--bg-deep);
+    scrollbar-width: thin;
+}
+
+h1, h2, h3, h4, h5, h6, .hero-title, .portal-card-title, .spread-name {
+    text-wrap: balance;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.4s;
 }
 
 #appCanvas {
@@ -149,8 +160,9 @@ body {
     border-radius: var(--radius-lg);
     padding: 36px 24px;
     text-align: center;
-    backdrop-filter: blur(16px);
-    transition: all 0.4s ease;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
@@ -213,7 +225,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
     padding: 36px;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     margin-bottom: 30px;
 }
 

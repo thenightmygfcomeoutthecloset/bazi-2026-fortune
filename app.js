@@ -23,6 +23,14 @@ let tarotStep = 'init';
 // ============================================================
 
 export function switchMode(mode) {
+    if (document.startViewTransition) {
+        document.startViewTransition(() => performSwitchMode(mode));
+    } else {
+        performSwitchMode(mode);
+    }
+}
+
+function performSwitchMode(mode) {
     activeMode = mode;
 
     const portalSection = document.getElementById('portalSection');
@@ -276,10 +284,18 @@ function handleBaziSubmit(e) {
             const bazi = calculateBaZi(year, month, day, hour, minute, longitude, gender);
             let fortune = analyzeFortune(bazi, focusArea);
             
-            renderBaziResults(bazi, fortune, focusArea);
-            hideLoading();
-            document.getElementById('baziFormCard').classList.add('hidden');
-            document.getElementById('baziResultSection').classList.remove('hidden');
+            const updateDOM = () => {
+                renderBaziResults(bazi, fortune, focusArea);
+                hideLoading();
+                document.getElementById('baziFormCard').classList.add('hidden');
+                document.getElementById('baziResultSection').classList.remove('hidden');
+            };
+
+            if (document.startViewTransition) {
+                document.startViewTransition(updateDOM);
+            } else {
+                updateDOM();
+            }
         } catch (err) {
             hideLoading();
             console.error('[BaZi] 排盘错误:', err);
@@ -557,55 +573,65 @@ function onTarotPick(idx, el) {
 function displayTarotResults() {
     const reading = performReading(tarotSpread.id, tarotSelectedIndexes, tarotDeck);
 
-    document.getElementById('readingStage').style.display = 'none';
-    const resSec = document.getElementById('tarotResultsSection');
-    resSec.classList.remove('hidden');
+    const updateDOM = () => {
+        document.getElementById('readingStage').style.display = 'none';
+        const resSec = document.getElementById('tarotResultsSection');
+        resSec.classList.remove('hidden');
 
-    const cardsGrid = document.getElementById('tarotCardsGrid');
-    cardsGrid.className = 'result-cards-grid';
-    if (reading.spread.id === 'celtic_cross') {
-        cardsGrid.classList.add('celtic-cross-layout');
+        const cardsGrid = document.getElementById('tarotCardsGrid');
+        cardsGrid.className = 'result-cards-grid';
+        if (reading.spread.id === 'celtic_cross') {
+            cardsGrid.classList.add('celtic-cross-layout');
+        }
+
+        cardsGrid.innerHTML = reading.drawnCards.map((c, i) => `
+            <div class="result-card-item">
+                <div style="font-size:0.8rem; color:var(--gold-light); margin-bottom:8px;">${c.positionLabel}</div>
+                <div class="tarot-card-3d" id="tarotResCard-${i}" style="position:relative; margin:0 auto 12px;">
+                    <div class="card-face card-back"><div class="card-back-symbol">☯</div></div>
+                    <div class="card-face card-front">${generateCardSvg(c, c.isReversed)}</div>
+                </div>
+                <div style="font-weight:bold; color:var(--gold-light); font-size:0.9rem;">${c.name} (${c.orientationLabel})</div>
+            </div>
+        `).join('');
+
+        document.getElementById('tarotReport').innerHTML = `
+            <h3 style="color:var(--gold-light); font-family:var(--font-serif); text-align:center; margin-bottom:20px;">
+                ${reading.spread.name} · 命运启示录
+            </h3>
+            ${reading.drawnCards.map(c => `
+                <div style="background:rgba(255,255,255,0.03); border-radius:12px; padding:16px; margin-bottom:12px;">
+                    <div style="font-weight:bold; color:var(--gold-light);">${c.positionLabel} ── 【${c.name}】 ${c.orientationLabel}位</div>
+                    <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:6px;">${c.meaningDesc}</div>
+                </div>
+            `).join('')}
+            <div style="margin-top:20px; padding:16px; background:rgba(212,168,83,0.1); border-radius:12px; border-left:3px solid var(--gold);">
+                <strong>🌟 综合命运指引：</strong> ${reading.overallAdvice}
+            </div>
+        `;
+    };
+
+    if (document.startViewTransition) {
+        document.startViewTransition(updateDOM).finished.then(triggerFlips);
+    } else {
+        updateDOM();
+        triggerFlips();
     }
 
-    cardsGrid.innerHTML = reading.drawnCards.map((c, i) => `
-        <div class="result-card-item">
-            <div style="font-size:0.8rem; color:var(--gold-light); margin-bottom:8px;">${c.positionLabel}</div>
-            <div class="tarot-card-3d" id="tarotResCard-${i}" style="position:relative; margin:0 auto 12px;">
-                <div class="card-face card-back"><div class="card-back-symbol">✦</div></div>
-                <div class="card-face card-front">${generateCardSvg(c, c.isReversed)}</div>
-            </div>
-            <div style="font-weight:bold; color:var(--gold-light); font-size:0.9rem;">${c.name} (${c.orientationLabel})</div>
-        </div>
-    `).join('');
-
-    reading.drawnCards.forEach((c, i) => {
-        setTimeout(() => {
-            const cardEl = document.getElementById(`tarotResCard-${i}`);
-            if (cardEl) {
-                cardEl.classList.add('flipped');
-                if (!c.isMinor) {
-                    playTarotSound('reveal');
-                } else {
-                    playTarotSound('flip');
+    function triggerFlips() {
+        reading.drawnCards.forEach((c, i) => {
+            setTimeout(() => {
+                const cardEl = document.getElementById(`tarotResCard-${i}`);
+                if (cardEl) {
+                    cardEl.classList.add('flipped');
+                    if (!c.isMinor) {
+                        playTarotSound('reveal');
+                    } else {
+                        playTarotSound('flip');
                 }
-            }
-        }, (i + 1) * 350);
-    });
-
-    document.getElementById('tarotReport').innerHTML = `
-        <h3 style="color:var(--gold-light); font-family:var(--font-serif); text-align:center; margin-bottom:20px;">
-            ${reading.spread.name} · 启示报告
-        </h3>
-        ${reading.drawnCards.map(c => `
-            <div style="background:rgba(255,255,255,0.03); border-radius:12px; padding:16px; margin-bottom:12px;">
-                <div style="font-weight:bold; color:var(--gold-light);">${c.positionLabel} — 【${c.name} · ${c.orientationLabel}】</div>
-                <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:6px;">${c.meaningDesc}</div>
-            </div>
-        `).join('')}
-        <div style="margin-top:20px; padding:16px; background:rgba(212,168,83,0.1); border-radius:12px; border-left:3px solid var(--gold);">
-            <strong>🌌 能量启示：</strong> ${reading.overallAdvice}
-        </div>
-    `;
+            }, (i + 1) * 350);
+        });
+    }
 }
 
 function showLoading(text) {
