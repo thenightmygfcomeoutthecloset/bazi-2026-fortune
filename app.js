@@ -225,6 +225,19 @@ function initBaziForm() {
 
     // 表单提交
     document.getElementById('baziForm').addEventListener('submit', handleBaziSubmit);
+
+    // 测算侧重点卡片点击逻辑
+    const focusGrid = document.getElementById('baziFocusGrid');
+    const focusInput = document.getElementById('baziFocusArea');
+    if (focusGrid && focusInput) {
+        focusGrid.querySelectorAll('.spread-card').forEach(card => {
+            card.addEventListener('click', () => {
+                focusGrid.querySelectorAll('.spread-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                focusInput.value = card.dataset.focus;
+            });
+        });
+    }
 }
 
 function handleBaziSubmit(e) {
@@ -254,15 +267,16 @@ function handleBaziSubmit(e) {
     
     const genderEl = document.querySelector('input[name="gender"]:checked');
     const gender = genderEl ? genderEl.value : 'male';
+    const focusArea = document.getElementById('baziFocusArea') ? document.getElementById('baziFocusArea').value : 'overall';
 
     showLoading('紫微真太阳时推演中…');
 
     setTimeout(() => {
         try {
             const bazi = calculateBaZi(year, month, day, hour, minute, longitude, gender);
-            let fortune = analyzeFortune(bazi);
+            let fortune = analyzeFortune(bazi, focusArea);
             
-            renderBaziResults(bazi, fortune);
+            renderBaziResults(bazi, fortune, focusArea);
             hideLoading();
             document.getElementById('baziFormCard').classList.add('hidden');
             document.getElementById('baziResultSection').classList.remove('hidden');
@@ -274,7 +288,7 @@ function handleBaziSubmit(e) {
     }, 1200);
 }
 
-function renderBaziResults(bazi, fortune) {
+function renderBaziResults(bazi, fortune, focusArea = 'overall') {
     const banner = document.getElementById('solarTimeBanner');
     const ts = bazi.trueSolar;
     const offsetStr = ts.offsetMinutes >= 0 ? `+${ts.offsetMinutes}` : `${ts.offsetMinutes}`;
@@ -394,12 +408,28 @@ function renderBaziResults(bazi, fortune) {
                     ${m.theme.icon} ${m.monthName} (${m.ganZhi}月 · ${m.gregorian})
                 </div>
                 <div style="font-family:var(--font-serif); font-size:1.4rem; color:var(--gold); font-weight:bold;">
-                    ${m.avgScore} 分
+                    ${m.focusScore} 分
                 </div>
             </div>
-            <div style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">${m.overall}</div>
+            <div style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">${m.focusText}</div>
         </div>
     `).join('');
+
+    // 绘制趋势柱状图
+    const trendChartContainer = document.querySelector('.trend-chart-container');
+    if (trendChartContainer) {
+        trendChartContainer.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; height:150px; padding:20px 10px; background:rgba(255,255,255,0.02); border-radius:12px;">
+                ${fortune.months.map(m => `
+                    <div style="display:flex; flex-direction:column; align-items:center; width:12%;">
+                        <div style="font-size:0.75rem; color:var(--gold); margin-bottom:4px;">${m.focusScore}</div>
+                        <div style="width:100%; max-width:24px; background:linear-gradient(to top, var(--gold-dark), var(--gold-light)); border-radius:4px 4px 0 0; height:${m.focusScore}px; transition:height 1s ease;"></div>
+                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">${m.monthName}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
 
     document.getElementById('trendSummary').innerHTML = `
         <div style="text-align:center; padding:16px; background:rgba(255,255,255,0.03); border-radius:12px;">

@@ -119,6 +119,34 @@
                         </label>
                     </div>
 
+                    <!-- 测算侧重点 -->
+                    <div style="margin-top: 30px; margin-bottom: 20px;">
+                        <h4 style="font-family: var(--font-serif); color: var(--gold-light); margin-bottom: 12px; font-size: 1.05rem;">🎯 你最想测什么？</h4>
+                        <div class="spread-grid" id="baziFocusGrid">
+                            <div class="spread-card active" data-focus="overall">
+                                <div class="spread-name">🌟 全面运势</div>
+                                <div class="spread-desc">综合评估全年各项运势走向</div>
+                            </div>
+                            <div class="spread-card" data-focus="career">
+                                <div class="spread-name">💼 事业发展</div>
+                                <div class="spread-desc">事业起伏、升职跳槽、职场贵人</div>
+                            </div>
+                            <div class="spread-card" data-focus="wealth">
+                                <div class="spread-name">💎 财富运势</div>
+                                <div class="spread-desc">正财偏财、投资理财、财务危机</div>
+                            </div>
+                            <div class="spread-card" data-focus="love">
+                                <div class="spread-name">💕 感情姻缘</div>
+                                <div class="spread-desc">正缘桃花、婚姻走向、恋爱阻碍</div>
+                            </div>
+                            <div class="spread-card" data-focus="health">
+                                <div class="spread-name">🌿 健康平安</div>
+                                <div class="spread-desc">身体状况、疾病隐患、灾祸避险</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="baziFocusArea" value="overall">
+                    </div>
+
                     <button type="submit" class="submit-btn">开 始 八 字 排 盘</button>
                 </form>
             </div>

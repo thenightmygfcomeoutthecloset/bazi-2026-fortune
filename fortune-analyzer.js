@@ -373,7 +373,7 @@ function adjustForXiYong(scores, monthElement, dayMasterAnalysis) {
  * @param {object} baziResult - calculateBaZi() 的返回结果
  * @returns {object} 运势分析结果
  */
-export function analyzeFortune(baziResult) {
+export function analyzeFortune(baziResult, focusArea = 'overall') {
     const { dayMaster, dayMasterAnalysis, monthlyTenGods, wuXing, daYun } = baziResult;
 
     // 大运流年分析 (针对 2026 丙午流年)
@@ -456,6 +456,18 @@ export function analyzeFortune(baziResult) {
         const totalScore = dimensions.reduce((sum, d) => sum + d.score, 0);
         const avgScore = Math.round((totalScore / 5) * 10) / 10;
 
+        // 根据 focusArea 决定主打分数和文案
+        let focusScore = avgScore;
+        let focusText = OVERALL_THEMES[stemTenGod] || '运势平稳，顺其自然。';
+        
+        if (focusArea && focusArea !== 'overall') {
+            const dim = dimensions.find(d => d.key === focusArea);
+            if (dim) {
+                focusScore = dim.score;
+                focusText = dim.text;
+            }
+        }
+
         // 主题
         const theme = TEN_GOD_THEMES[stemTenGod] || { theme: '平稳过渡', icon: '☯️', color: '#94a3b8' };
         const overall = OVERALL_THEMES[stemTenGod] || '运势平稳，顺其自然。';
@@ -467,32 +479,33 @@ export function analyzeFortune(baziResult) {
             dimensions,
             totalScore,
             avgScore,
+            focusScore,
+            focusText,
             theme,
             overall,
         };
     });
 
-    // 整体趋势
-    const avgScores = months.map(m => m.avgScore);
-    const bestMonth = months.reduce((best, m) => m.avgScore > best.avgScore ? m : best, months[0]);
-    const worstMonth = months.reduce((worst, m) => m.avgScore < worst.avgScore ? m : worst, months[0]);
+    // 整体趋势 (根据侧重点)
+    const bestMonth = months.reduce((best, m) => m.focusScore > best.focusScore ? m : best, months[0]);
+    const worstMonth = months.reduce((worst, m) => m.focusScore < worst.focusScore ? m : worst, months[0]);
 
     // 整体运势评语
-    const trend = avgScores[avgScores.length - 1] > avgScores[0] ? 'rising' : avgScores[avgScores.length - 1] < avgScores[0] ? 'falling' : 'stable';
-    const trendLabels = { rising: '渐入佳境', falling: '先扬后抑', stable: '稳如泰山' };
+    const trendLabel = bestMonth.focusScore >= 80 ? '一帆风顺' : (bestMonth.focusScore >= 70 ? '稳中有升' : '波动蓄力');
+
+    const overallTrend = {
+        avgScore: Math.round(months.reduce((sum, m) => sum + m.focusScore, 0) / months.length),
+        bestMonth: { name: bestMonth.monthName, ganZhi: bestMonth.ganZhi, score: bestMonth.focusScore },
+        worstMonth: { name: worstMonth.monthName, ganZhi: worstMonth.ganZhi, score: worstMonth.focusScore },
+        trendLabel,
+    };
 
     // 日主简析文案
     const dayMasterDesc = generateDayMasterDescription(dayMaster, dayMasterAnalysis);
 
     return {
         months,
-        overall: {
-            avgScores,
-            bestMonth: { name: bestMonth.monthName, ganZhi: bestMonth.ganZhi, score: bestMonth.avgScore },
-            worstMonth: { name: worstMonth.monthName, ganZhi: worstMonth.ganZhi, score: worstMonth.avgScore },
-            trend,
-            trendLabel: trendLabels[trend],
-        },
+        overall: overallTrend,
         luckyInfo,
         dayMasterDesc,
         currentDaYun
